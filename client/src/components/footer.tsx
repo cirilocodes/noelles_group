@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 import { SiBehance } from "react-icons/si";
+import logoImage from "@assets/N1_1750686199510.jpg";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -16,7 +17,7 @@ export default function Footer() {
           <div className="col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <img 
-                src="@assets/N1_1750686199510.jpg" 
+                src={logoImage} 
                 alt="Noelles Group Logo" 
                 className="w-12 h-12 rounded-xl shadow-lg object-cover"
               />

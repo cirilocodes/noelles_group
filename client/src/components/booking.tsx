@@ -26,9 +26,36 @@ const serviceTypes = [
   "Animation Creation"
 ];
 
+const countries = [
+  { name: "Ghana", code: "+233" },
+  { name: "Nigeria", code: "+234" },
+  { name: "United States", code: "+1" },
+  { name: "United Kingdom", code: "+44" },
+  { name: "Canada", code: "+1" },
+  { name: "South Africa", code: "+27" },
+  { name: "Kenya", code: "+254" },
+  { name: "Germany", code: "+49" },
+  { name: "France", code: "+33" },
+  { name: "Australia", code: "+61" },
+  { name: "India", code: "+91" },
+  { name: "China", code: "+86" },
+  { name: "Japan", code: "+81" },
+  { name: "Brazil", code: "+55" },
+  { name: "Mexico", code: "+52" },
+  { name: "Egypt", code: "+20" },
+  { name: "Morocco", code: "+212" },
+  { name: "Ivory Coast", code: "+225" },
+  { name: "Burkina Faso", code: "+226" },
+  { name: "Senegal", code: "+221" },
+  { name: "Mali", code: "+223" },
+  { name: "Togo", code: "+228" },
+  { name: "Benin", code: "+229" },
+];
+
 export default function Booking() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const form = useForm<InsertBooking>({
     resolver: zodResolver(insertBookingSchema),
@@ -41,6 +68,11 @@ export default function Booking() {
       projectDetails: "",
     },
   });
+
+  const getCountryCode = (countryName: string) => {
+    const country = countries.find(c => c.name === countryName);
+    return country ? country.code : "";
+  };
 
   const bookingMutation = useMutation({
     mutationFn: async (data: InsertBooking) => {
@@ -130,13 +162,23 @@ export default function Booking() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-gray-700 font-semibold">Country</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter your country" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
+                      <Select onValueChange={(value) => {
+                        field.onChange(value);
+                        setSelectedCountry(value);
+                      }} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
+                            <SelectValue placeholder="Select your country" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem key={country.name} value={country.name}>
+                              {country.name} ({country.code})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -148,12 +190,17 @@ export default function Booking() {
                     <FormItem>
                       <FormLabel className="text-gray-700 font-semibold">Phone Number</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="tel"
-                          placeholder="Enter your phone number" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
+                        <div className="flex">
+                          <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 rounded-l-xl bg-gray-50 text-gray-600 font-medium">
+                            {getCountryCode(selectedCountry) || "+233"}
+                          </div>
+                          <Input 
+                            type="tel"
+                            placeholder="24 676 6413" 
+                            className="px-4 py-3 border border-gray-300 rounded-r-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300 flex-1"
+                            {...field} 
+                          />
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>

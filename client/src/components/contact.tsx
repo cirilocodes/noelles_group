@@ -7,14 +7,42 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, Clock, Send, Linkedin, Twitter, Instagram } from "lucide-react";
 import { SiBehance } from "react-icons/si";
 
+const countries = [
+  { name: "Ghana", code: "+233" },
+  { name: "Nigeria", code: "+234" },
+  { name: "United States", code: "+1" },
+  { name: "United Kingdom", code: "+44" },
+  { name: "Canada", code: "+1" },
+  { name: "South Africa", code: "+27" },
+  { name: "Kenya", code: "+254" },
+  { name: "Germany", code: "+49" },
+  { name: "France", code: "+33" },
+  { name: "Australia", code: "+61" },
+  { name: "India", code: "+91" },
+  { name: "China", code: "+86" },
+  { name: "Japan", code: "+81" },
+  { name: "Brazil", code: "+55" },
+  { name: "Mexico", code: "+52" },
+  { name: "Egypt", code: "+20" },
+  { name: "Morocco", code: "+212" },
+  { name: "Ivory Coast", code: "+225" },
+  { name: "Burkina Faso", code: "+226" },
+  { name: "Senegal", code: "+221" },
+  { name: "Mali", code: "+223" },
+  { name: "Togo", code: "+228" },
+  { name: "Benin", code: "+229" },
+];
+
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const form = useForm<InsertContact>({
     resolver: zodResolver(insertContactSchema),
@@ -22,10 +50,17 @@ export default function Contact() {
       firstName: "",
       lastName: "",
       email: "",
+      country: "",
+      phone: "",
       subject: "",
       message: "",
     },
   });
+
+  const getCountryCode = (countryName: string) => {
+    const country = countries.find(c => c.name === countryName);
+    return country ? country.code : "";
+  };
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContact) => {
@@ -199,6 +234,59 @@ export default function Contact() {
                     </FormItem>
                   )}
                 />
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-semibold">Country (Optional)</FormLabel>
+                        <Select onValueChange={(value) => {
+                          field.onChange(value);
+                          setSelectedCountry(value);
+                        }} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
+                              <SelectValue placeholder="Select your country" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {countries.map((country) => (
+                              <SelectItem key={country.name} value={country.name}>
+                                {country.name} ({country.code})
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-semibold">Phone Number (Optional)</FormLabel>
+                        <FormControl>
+                          <div className="flex">
+                            <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 rounded-l-xl bg-gray-50 text-gray-600 font-medium">
+                              {getCountryCode(selectedCountry) || "+233"}
+                            </div>
+                            <Input 
+                              type="tel"
+                              placeholder="24 676 6413" 
+                              className="px-4 py-3 border border-gray-300 rounded-r-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300 flex-1"
+                              {...field} 
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <FormField
                   control={form.control}
