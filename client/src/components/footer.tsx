@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <img 
-                src="@assets/NOELLES_1750684252195.jpg" 
+                src="@assets/N1_1750686199510.jpg" 
                 alt="Noelles Group Logo" 
                 className="w-12 h-12 rounded-xl shadow-lg object-cover"
               />

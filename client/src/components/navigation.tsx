@@ -19,7 +19,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3">
             <img 
-              src="@assets/NOELLES_1750684252195.jpg" 
+              src="@assets/N1_1750686199510.jpg" 
               alt="Noelles Group Logo" 
               className="w-12 h-12 rounded-xl shadow-lg object-cover"
             />
@@ -56,6 +56,12 @@ export default function Navigation() {
               className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
             >
               Team
+            </button>
+            <button 
+              onClick={() => scrollToSection('reviews')}
+              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+            >
+              Reviews
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
@@ -115,6 +121,12 @@ export default function Navigation() {
                 className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
               >
                 Team
+              </button>
+              <button 
+                onClick={() => scrollToSection('reviews')}
+                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+              >
+                Reviews
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}

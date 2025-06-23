@@ -1,5 +1,5 @@
 import { apiRequest } from "./queryClient";
-import type { InsertBooking, InsertContact } from "@shared/schema";
+import type { InsertBooking, InsertContact, InsertReview } from "@shared/schema";
 
 export const api = {
   bookings: {
@@ -19,6 +19,16 @@ export const api = {
     },
     getAll: async () => {
       const response = await apiRequest("GET", "/api/contacts");
+      return response.json();
+    },
+  },
+  reviews: {
+    create: async (data: InsertReview) => {
+      const response = await apiRequest("POST", "/api/reviews", data);
+      return response.json();
+    },
+    getAll: async () => {
+      const response = await apiRequest("GET", "/api/reviews");
       return response.json();
     },
   },

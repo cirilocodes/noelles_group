@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertBookingSchema, insertContactSchema } from "@shared/schema";
+import { insertBookingSchema, insertContactSchema, insertReviewSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from "nodemailer";
 
@@ -104,6 +104,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(contacts);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch contacts" });
+    }
+  });
+
+  // Review routes
+  app.post("/api/reviews", async (req, res) => {
+    try {
+      const reviewData = insertReviewSchema.parse(req.body);
+      const review = await storage.createReview(reviewData);
+
+      // Send email notification
+      try {
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
+          to: "noellesgroup4@gmail.com",
+          subject: `New Customer Review - ${reviewData.rating} Stars`,
+          html: `
+            <h2>New Customer Review Received</h2>
+            <p><strong>Name:</strong> ${reviewData.name}</p>
+            <p><strong>Email:</strong> ${reviewData.email}</p>
+            <p><strong>Rating:</strong> ${reviewData.rating}/5 stars</p>
+            <p><strong>Service Used:</strong> ${reviewData.serviceUsed || 'Not specified'}</p>
+            <p><strong>Review:</strong></p>
+            <p>${reviewData.message}</p>
+            <p><em>Note: Review needs approval before appearing on the website.</em></p>
+          `,
+        });
+      } catch (emailError) {
+        console.error("Email notification failed:", emailError);
+      }
+
+      res.json(review);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid review data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create review" });
+      }
+    }
+  });
+
+  app.get("/api/reviews", async (req, res) => {
+    try {
+      const reviews = await storage.getApprovedReviews();
+      res.json(reviews);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch reviews" });
     }
   });
 

@@ -93,10 +93,10 @@ export default function Contact() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Us</h3>
                 <p className="text-gray-600 mb-2">Give us a call to discuss your project requirements.</p>
                 <a 
-                  href="tel:+233501234567" 
+                  href="tel:+233246766413" 
                   className="text-[hsl(262,52%,47%)] font-semibold hover:text-[hsl(217,91%,60%)] transition-colors duration-300"
                 >
-                  +233 50 123 4567
+                  +233 24 676 6413
                 </a>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { users, bookings, contacts, type User, type InsertUser, type InsertBooking, type Booking, type InsertContact, type Contact } from "@shared/schema";
+import { users, bookings, contacts, reviews, type User, type InsertUser, type InsertBooking, type Booking, type InsertContact, type Contact, type InsertReview, type Review } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -10,6 +10,9 @@ export interface IStorage {
   getBookings(): Promise<Booking[]>;
   createContact(contact: InsertContact): Promise<Contact>;
   getContacts(): Promise<Contact[]>;
+  createReview(review: InsertReview): Promise<Review>;
+  getApprovedReviews(): Promise<Review[]>;
+  getAllReviews(): Promise<Review[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -53,6 +56,22 @@ export class DatabaseStorage implements IStorage {
 
   async getContacts(): Promise<Contact[]> {
     return await db.select().from(contacts);
+  }
+
+  async createReview(insertReview: InsertReview): Promise<Review> {
+    const [review] = await db
+      .insert(reviews)
+      .values(insertReview)
+      .returning();
+    return review;
+  }
+
+  async getApprovedReviews(): Promise<Review[]> {
+    return await db.select().from(reviews).where(eq(reviews.isApproved, true));
+  }
+
+  async getAllReviews(): Promise<Review[]> {
+    return await db.select().from(reviews);
   }
 }
 

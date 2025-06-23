@@ -5,6 +5,7 @@ import Services from "@/components/services";
 import Portfolio from "@/components/portfolio";
 import Team from "@/components/team";
 import Testimonials from "@/components/testimonials";
+import Reviews from "@/components/reviews";
 import Booking from "@/components/booking";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
@@ -19,6 +20,7 @@ export default function Home() {
       <Portfolio />
       <Team />
       <Testimonials />
+      <Reviews />
       <Booking />
       <Contact />
       <Footer />
