@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logoImage from "@assets/N1_1750686199510.jpg";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3">
             <img 
-              src="@assets/N1_1750686199510.jpg" 
+              src={logoImage} 
               alt="Noelles Group Logo" 
               className="w-12 h-12 rounded-xl shadow-lg object-cover"
             />
