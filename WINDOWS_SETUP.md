@@ -27,57 +27,15 @@ This guide will help you set up the Noelles Group website on Windows using VSCod
 3. Remember the port (default: 5432)
 4. Add PostgreSQL to your PATH during installation
 
-### 2. Create Database
-
-Open Command Prompt or PowerShell as Administrator:
-
-```cmd
-# Connect to PostgreSQL
-psql -U postgres
-
-# Create database
-CREATE DATABASE noelles_group;
-
-# Create user (optional)
-CREATE USER noelles_user WITH PASSWORD 'your_password';
-GRANT ALL PRIVILEGES ON DATABASE noelles_group TO noelles_user;
-
-# Exit PostgreSQL
-\q
-```
-
 ### 3. Clone and Setup Project
 
 ```cmd
 # Clone repository
 git clone [your-repository-url]
-cd noelles-group-website
+cd noelles_group
 
 # Install dependencies
 npm install
-
-# Copy environment file
-copy .env.example .env
-```
-
-### 4. Configure Environment
-
-Edit `.env` file with your database credentials:
-
-```env
-DATABASE_URL=postgresql://postgres:your_password@localhost:5432/noelles_group
-PGHOST=localhost
-PGPORT=5432
-PGUSER=postgres
-PGPASSWORD=your_password
-PGDATABASE=noelles_group
-
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_gmail_app_password
-
-NODE_ENV=development
-PORT=5000
-```
 
 ### 5. Initialize Database
 
