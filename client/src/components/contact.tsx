@@ -189,161 +189,144 @@ export default function Contact() {
           </div>
 
           <div className="bg-gray-50 rounded-3xl p-8">
+            {/* Form Progress Indicator */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Form Progress</span>
+                <span className="text-sm font-medium text-gray-600">{Math.round(formProgress)}%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] h-2 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${formProgress}%` }}
+                />
+              </div>
+            </div>
+
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">First Name</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="John" 
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="First Name"
+                    type="text"
+                    placeholder="John"
+                    required
+                    description="Enter your first name"
                   />
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">Last Name</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Doe" 
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Last Name"
+                    type="text"
+                    placeholder="Doe"
+                    required
+                    description="Enter your last name"
                   />
                 </div>
 
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email"
-                          placeholder="john@example.com" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Email Address"
+                  type="email"
+                  placeholder="john@example.com"
+                  required
+                  description="We'll use this to respond to your message"
                 />
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="country"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">Country (Optional)</FormLabel>
-                        <Select onValueChange={(value) => {
-                          field.onChange(value);
-                          setSelectedCountry(value);
-                        }} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
-                              <SelectValue placeholder="Select your country" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {countries.map((country) => (
-                              <SelectItem key={country.name} value={country.name}>
-                                {country.name} ({country.code})
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Country (Optional)"
+                    type="select"
+                    placeholder="Select your country"
+                    options={countries.map(country => ({
+                      value: country.name,
+                      label: `${country.name} (${country.code})`
+                    }))}
+                    description="Help us provide better service"
                   />
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">Phone Number (Optional)</FormLabel>
-                        <FormControl>
-                          <div className="flex">
-                            <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 rounded-l-xl bg-gray-50 text-gray-600 font-medium">
-                              {getCountryCode(selectedCountry) || "+233"}
-                            </div>
-                            <Input 
-                              type="tel"
-                              placeholder="24 676 6413" 
-                              className="px-4 py-3 border border-gray-300 rounded-r-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300 flex-1"
-                              {...field} 
-                            />
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Phone Number (Optional)"
+                    type="tel"
+                    placeholder="24 676 6413"
+                    description="Enter your phone number (optional)"
                   />
                 </div>
 
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Subject</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="How can we help you?" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Subject"
+                  type="text"
+                  placeholder="How can we help you?"
+                  required
+                  description="Brief description of your inquiry"
                 />
 
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Message</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          rows={5}
-                          placeholder="Tell us about your project or ask any questions..." 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Message"
+                  type="textarea"
+                  placeholder="Tell us about your project or ask any questions..."
+                  required
+                  description="Provide details about your inquiry (minimum 10 characters)"
                 />
+
+                {/* Form Validation Summary */}
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {Object.keys(form.formState.errors).length === 0 && formProgress > 80 ? (
+                        <>
+                          <CheckCircle className="h-5 w-5 text-green-500" />
+                          <span className="text-green-700 font-medium">Form looks good! Ready to submit.</span>
+                        </>
+                      ) : (
+                        <>
+                          <AlertTriangle className="h-5 w-5 text-orange-500" />
+                          <span className="text-orange-700 font-medium">
+                            {Object.keys(form.formState.errors).length > 0 
+                              ? `${Object.keys(form.formState.errors).length} field(s) need attention`
+                              : 'Please complete all required fields'
+                            }
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <span className="text-sm text-gray-500">
+                      {Object.values(watchedFields).filter((v, i) => ['firstName', 'lastName', 'email', 'subject', 'message'].includes(Object.keys(watchedFields)[i]) && v && v.toString().trim() !== "").length} / 5 completed
+                    </span>
+                  </div>
+                </div>
 
                 <Button 
                   type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] px-8 py-4 rounded-xl text-white font-bold text-lg hover:shadow-xl hover:shadow-[hsl(262,52%,47%)]/30 transition-all duration-300 transform hover:scale-[1.02]"
+                  disabled={isSubmitting || contactMutation.isPending || Object.keys(form.formState.errors).length > 0} 
+                  className={cn(
+                    "w-full py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl",
+                    Object.keys(form.formState.errors).length === 0 && formProgress > 80
+                      ? "bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] hover:from-[hsl(262,52%,42%)] hover:to-[hsl(217,91%,55%)] text-white"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  )}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                  <Send className="ml-2 w-5 h-5" />
+                  {isSubmitting || contactMutation.isPending ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                      Sending...
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </div>
+                  )}
                 </Button>
               </form>
             </Form>

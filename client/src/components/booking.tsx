@@ -212,28 +212,55 @@ export default function Booking() {
                 required
                 description="Provide detailed information about your project (minimum 10 characters)"
               />
-                  <FormItem>
-                    <FormLabel className="text-gray-700 font-semibold">Project Details</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        rows={5}
-                        placeholder="Tell us about your project requirements, goals, and any specific details..." 
-                        className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+
+              {/* Form Validation Summary */}
+              <div className="bg-gray-50 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {Object.keys(form.formState.errors).length === 0 && formProgress > 80 ? (
+                      <>
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                        <span className="text-green-700 font-medium">Form looks good! Ready to submit.</span>
+                      </>
+                    ) : (
+                      <>
+                        <AlertTriangle className="h-5 w-5 text-orange-500" />
+                        <span className="text-orange-700 font-medium">
+                          {Object.keys(form.formState.errors).length > 0 
+                            ? `${Object.keys(form.formState.errors).length} field(s) need attention`
+                            : 'Please complete all required fields'
+                          }
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <span className="text-sm text-gray-500">
+                    {Object.values(watchedFields).filter(v => v && v.toString().trim() !== "").length} / {Object.keys(watchedFields).length} completed
+                  </span>
+                </div>
+              </div>
 
               <Button 
                 type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] px-8 py-4 rounded-xl text-white font-bold text-lg hover:shadow-xl hover:shadow-[hsl(262,52%,47%)]/30 transition-all duration-300 transform hover:scale-[1.02]"
+                disabled={isSubmitting || bookingMutation.isPending || Object.keys(form.formState.errors).length > 0} 
+                className={cn(
+                  "w-full py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl",
+                  Object.keys(form.formState.errors).length === 0 && formProgress > 80
+                    ? "bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] hover:from-[hsl(262,52%,42%)] hover:to-[hsl(217,91%,55%)] text-white"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                )}
               >
-                {isSubmitting ? "Submitting..." : "Submit Project Request"}
-                <ArrowRight className="ml-2 w-5 h-5" />
+                {isSubmitting || bookingMutation.isPending ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                    Submitting...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    Start Project
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </div>
+                )}
               </Button>
             </form>
           </Form>

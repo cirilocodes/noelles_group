@@ -152,69 +152,54 @@ export default function Reviews() {
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Share Your Experience</h3>
               
+              {/* Form Progress Indicator */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-600">Review Progress</span>
+                  <span className="text-sm font-medium text-gray-600">{Math.round(formProgress)}%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] h-2 rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${formProgress}%` }}
+                  />
+                </div>
+              </div>
+              
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithValidation
+                      form={form}
                       name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-700 font-semibold">Your Name</FormLabel>
-                          <FormControl>
-                            <Input 
-                              placeholder="Enter your name" 
-                              className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Your Name"
+                      type="text"
+                      placeholder="Enter your name"
+                      required
+                      description="Your name will be displayed with the review"
                     />
-                    <FormField
-                      control={form.control}
+                    <FormFieldWithValidation
+                      form={form}
                       name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-700 font-semibold">Email Address</FormLabel>
-                          <FormControl>
-                            <Input 
-                              type="email"
-                              placeholder="Enter your email" 
-                              className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                      label="Email Address"
+                      type="email"
+                      placeholder="Enter your email"
+                      required
+                      description="Email won't be shown publicly"
                     />
                   </div>
 
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="serviceUsed"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">Service Used (Optional)</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
-                              <SelectValue placeholder="Select a service" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {serviceTypes.map((service) => (
-                              <SelectItem key={service} value={service}>
-                                {service}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Service Used (Optional)"
+                    type="select"
+                    placeholder="Select a service"
+                    options={serviceTypes.map(service => ({
+                      value: service,
+                      label: service
+                    }))}
+                    description="Which service did you use? (Optional)"
                   />
 
                   <div>
@@ -228,32 +213,66 @@ export default function Reviews() {
                     )}
                   </div>
 
-                  <FormField
-                    control={form.control}
+                  <FormFieldWithValidation
+                    form={form}
                     name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-gray-700 font-semibold">Your Review</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            rows={5}
-                            placeholder="Tell us about your experience with Noelles Group..." 
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Your Review"
+                    type="textarea"
+                    placeholder="Tell us about your experience with Noelles Group..."
+                    required
+                    description="Share your experience (minimum 10 characters)"
                   />
+
+                  {/* Form Validation Summary */}
+                  <div className="bg-gray-50 rounded-xl p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        {Object.keys(form.formState.errors).length === 0 && formProgress > 80 && selectedRating > 0 ? (
+                          <>
+                            <CheckCircle className="h-5 w-5 text-green-500" />
+                            <span className="text-green-700 font-medium">Review looks good! Ready to submit.</span>
+                          </>
+                        ) : (
+                          <>
+                            <AlertTriangle className="h-5 w-5 text-orange-500" />
+                            <span className="text-orange-700 font-medium">
+                              {selectedRating === 0 
+                                ? 'Please select a rating'
+                                : Object.keys(form.formState.errors).length > 0 
+                                  ? `${Object.keys(form.formState.errors).length} field(s) need attention`
+                                  : 'Please complete all required fields'
+                              }
+                            </span>
+                          </>
+                        )}
+                      </div>
+                      <span className="text-sm text-gray-500">
+                        {Object.values(watchedFields).filter((v, i) => ['name', 'email', 'message'].includes(Object.keys(watchedFields)[i]) && v && v.toString().trim() !== "").length + (selectedRating > 0 ? 1 : 0)} / 4 completed
+                      </span>
+                    </div>
+                  </div>
 
                   <Button 
                     type="submit" 
-                    disabled={isSubmitting || selectedRating === 0}
-                    className="w-full bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] px-8 py-4 rounded-xl text-white font-bold text-lg hover:shadow-xl hover:shadow-[hsl(262,52%,47%)]/30 transition-all duration-300 transform hover:scale-[1.02]"
+                    disabled={isSubmitting || reviewMutation.isPending || selectedRating === 0 || Object.keys(form.formState.errors).length > 0}
+                    className={cn(
+                      "w-full py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl",
+                      Object.keys(form.formState.errors).length === 0 && formProgress > 80 && selectedRating > 0
+                        ? "bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] hover:from-[hsl(262,52%,42%)] hover:to-[hsl(217,91%,55%)] text-white"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    )}
                   >
-                    {isSubmitting ? "Submitting..." : "Submit Review"}
-                    <Send className="ml-2 w-5 h-5" />
+                    {isSubmitting || reviewMutation.isPending ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                        Submitting...
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        Submit Review
+                        <Send className="ml-2 h-5 w-5" />
+                      </div>
+                    )}
                   </Button>
                 </form>
               </Form>
