@@ -1,7 +1,6 @@
-import Database from 'better-sqlite3';
-import { drizzle as drizzleSQLite } from 'drizzle-orm/better-sqlite3';
-import { Pool } from 'pg';
-import { drizzle as drizzlePostgres } from 'drizzle-orm/node-postgres';
+import pkg from 'pg';
+const { Pool } = pkg;
+import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from "@shared/schema";
 
 // Always use user's PostgreSQL database with provided credentials
@@ -21,7 +20,7 @@ const poolConfig = {
 };
 
 const pool = new Pool(poolConfig);
-const db = drizzlePostgres(pool, { schema });
+const db = drizzle(pool, { schema });
 
 // Test PostgreSQL connection
 pool.connect()
@@ -31,6 +30,8 @@ pool.connect()
   })
   .catch(err => {
     console.error('[DB] PostgreSQL connection failed:', err.message);
+    console.error('[DB] Please ensure PostgreSQL service is running on Windows');
+    console.error('[DB] Run: net start postgresql-x64-15 (as Administrator)');
   });
 
 export { db };
