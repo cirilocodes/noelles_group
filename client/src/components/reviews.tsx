@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { insertReviewSchema, type InsertReview, type Review } from "@shared/schema";
+import { type InsertReview, type Review } from "@shared/schema";
+import { enhancedReviewSchema } from "@shared/validation";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
+import { FormFieldWithValidation } from "@/components/ui/form-field-with-validation";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Star, Send, MessageSquarePlus } from "lucide-react";
+import { Star, Send, MessageSquarePlus, CheckCircle, AlertTriangle } from "lucide-react";
 import { queryClient } from "@/lib/queryClient";
+import { cn } from "@/lib/utils";
 
 const serviceTypes = [
   "Website Development",
@@ -32,9 +32,11 @@ export default function Reviews() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [selectedRating, setSelectedRating] = useState(0);
+  const [formProgress, setFormProgress] = useState(0);
 
   const form = useForm<InsertReview>({
-    resolver: zodResolver(insertReviewSchema),
+    resolver: zodResolver(enhancedReviewSchema),
+    mode: "onChange", // Enable real-time validation
     defaultValues: {
       name: "",
       email: "",
@@ -43,6 +45,18 @@ export default function Reviews() {
       serviceUsed: "",
     },
   });
+
+  // Calculate form completion progress
+  const watchedFields = form.watch();
+  useEffect(() => {
+    const requiredFields = ['name', 'email', 'rating', 'message'];
+    const completedRequired = requiredFields.filter(field => {
+      const value = watchedFields[field];
+      if (field === 'rating') return value && value > 0;
+      return value && value.toString().trim() !== "";
+    }).length;
+    setFormProgress((completedRequired / requiredFields.length) * 100);
+  }, [watchedFields]);
 
   const { data: reviews = [], isLoading } = useQuery({
     queryKey: ['/api/reviews'],

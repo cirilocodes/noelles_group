@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { insertContactSchema, type InsertContact } from "@shared/schema";
+import { type InsertContact } from "@shared/schema";
+import { enhancedContactSchema } from "@shared/validation";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
+import { FormFieldWithValidation } from "@/components/ui/form-field-with-validation";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Mail, Phone, Clock, Send, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Phone, Clock, Send, Linkedin, Twitter, Instagram, CheckCircle, AlertTriangle } from "lucide-react";
 import { SiBehance } from "react-icons/si";
+import { cn } from "@/lib/utils";
 
 const countries = [
   { name: "Ghana", code: "+233" },
@@ -43,9 +43,11 @@ export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [formProgress, setFormProgress] = useState(0);
 
   const form = useForm<InsertContact>({
-    resolver: zodResolver(insertContactSchema),
+    resolver: zodResolver(enhancedContactSchema),
+    mode: "onChange", // Enable real-time validation
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -56,6 +58,16 @@ export default function Contact() {
       message: "",
     },
   });
+
+  // Calculate form completion progress
+  const watchedFields = form.watch();
+  useEffect(() => {
+    const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+    const completedRequired = requiredFields.filter(field => 
+      watchedFields[field] && watchedFields[field].toString().trim() !== ""
+    ).length;
+    setFormProgress((completedRequired / requiredFields.length) * 100);
+  }, [watchedFields]);
 
   const getCountryCode = (countryName: string) => {
     const country = countries.find(c => c.name === countryName);

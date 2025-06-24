@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { insertBookingSchema, type InsertBooking } from "@shared/schema";
+import { type InsertBooking } from "@shared/schema";
+import { enhancedBookingSchema } from "@shared/validation";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
+import { FormFieldWithValidation } from "@/components/ui/form-field-with-validation";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertTriangle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const serviceTypes = [
   "Website Development",
@@ -56,9 +56,11 @@ export default function Booking() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [formProgress, setFormProgress] = useState(0);
 
   const form = useForm<InsertBooking>({
-    resolver: zodResolver(insertBookingSchema),
+    resolver: zodResolver(enhancedBookingSchema),
+    mode: "onChange", // Enable real-time validation
     defaultValues: {
       name: "",
       email: "",
@@ -68,6 +70,16 @@ export default function Booking() {
       projectDetails: "",
     },
   });
+
+  // Calculate form completion progress
+  const watchedFields = form.watch();
+  useEffect(() => {
+    const totalFields = Object.keys(watchedFields).length;
+    const completedFields = Object.values(watchedFields).filter(value => 
+      value && value.toString().trim() !== ""
+    ).length;
+    setFormProgress((completedFields / totalFields) * 100);
+  }, [watchedFields]);
 
   const getCountryCode = (countryName: string) => {
     const country = countries.find(c => c.name === countryName);
@@ -115,128 +127,91 @@ export default function Booking() {
         </div>
 
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+          {/* Form Progress Indicator */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-600">Form Progress</span>
+              <span className="text-sm font-medium text-gray-600">{Math.round(formProgress)}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div 
+                className="bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] h-2 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${formProgress}%` }}
+              />
+            </div>
+          </div>
+
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Full Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Enter your full name" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Full Name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  required
+                  description="Enter your first and last name"
                 />
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Email Address</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email"
-                          placeholder="Enter your email" 
-                          className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Email Address"
+                  type="email"
+                  placeholder="Enter your email address"
+                  required
+                  description="We'll send booking confirmation here"
                 />
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="country"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Country</FormLabel>
-                      <Select onValueChange={(value) => {
-                        field.onChange(value);
-                        setSelectedCountry(value);
-                      }} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
-                            <SelectValue placeholder="Select your country" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {countries.map((country) => (
-                            <SelectItem key={country.name} value={country.name}>
-                              {country.name} ({country.code})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Country"
+                  type="select"
+                  placeholder="Select your country"
+                  required
+                  options={countries.map(country => ({
+                    value: country.name,
+                    label: `${country.name} (${country.code})`
+                  }))}
+                  description="Select your country for accurate phone code"
                 />
-                <FormField
-                  control={form.control}
+                <FormFieldWithValidation
+                  form={form}
                   name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-700 font-semibold">Phone Number</FormLabel>
-                      <FormControl>
-                        <div className="flex">
-                          <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 rounded-l-xl bg-gray-50 text-gray-600 font-medium">
-                            {getCountryCode(selectedCountry) || "+233"}
-                          </div>
-                          <Input 
-                            type="tel"
-                            placeholder="24 676 6413" 
-                            className="px-4 py-3 border border-gray-300 rounded-r-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300 flex-1"
-                            {...field} 
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  label="Phone Number"
+                  type="tel"
+                  placeholder="24 676 6413"
+                  required
+                  description={`Format: ${getCountryCode(selectedCountry) || "+233"} followed by your number`}
                 />
               </div>
 
-              <FormField
-                control={form.control}
+              <FormFieldWithValidation
+                form={form}
                 name="serviceType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-gray-700 font-semibold">Service Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[hsl(262,52%,47%)] focus:border-transparent transition-all duration-300">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {serviceTypes.map((service) => (
-                          <SelectItem key={service} value={service}>
-                            {service}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                label="Service Type"
+                type="select"
+                placeholder="Select a service"
+                required
+                options={serviceTypes.map(service => ({
+                  value: service,
+                  label: service
+                }))}
+                description="Choose the service you need help with"
               />
 
-              <FormField
-                control={form.control}
+              <FormFieldWithValidation
+                form={form}
                 name="projectDetails"
-                render={({ field }) => (
+                label="Project Details"
+                type="textarea"
+                placeholder="Describe your project, goals, timeline, and any specific requirements..."
+                required
+                description="Provide detailed information about your project (minimum 10 characters)"
+              />
                   <FormItem>
                     <FormLabel className="text-gray-700 font-semibold">Project Details</FormLabel>
                     <FormControl>
