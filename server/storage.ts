@@ -40,26 +40,25 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createBooking(insertBooking: InsertBooking): Promise<Booking> {
-  try {
-    const [booking] = await db
-      .insert(bookings)
-      .values(insertBooking)
-      .returning();
+    try {
+      const [booking] = await db
+        .insert(bookings)
+        .values(insertBooking)
+        .returning();
 
-    if (!booking) {
-      throw new Error("Database did not return the new booking.");
+      if (!booking) {
+        throw new Error("Database did not return the new booking.");
+      }
+
+      return booking;
+    } catch (error) {
+      console.error("[DB] Failed to create booking:", {
+        error: error instanceof Error ? error.message : error,
+        data: insertBooking,
+      });
+      throw new Error("Could not create booking. Please check database connection.");
     }
-
-    return booking;
-  } catch (error) {
-    console.error("[DB] Failed to create booking:", {
-      error,
-      data: insertBooking,
-    });
-
-    throw new Error("Could not create booking. See logs for details.");
   }
-}
 
   async getBookings(): Promise<Booking[]> {
     return await db.select().from(bookings);
@@ -79,10 +78,10 @@ export class DatabaseStorage implements IStorage {
       return contact;
     } catch (error) {
       console.error("[DB] Failed to create contact:", {
-        error,
+        error: error instanceof Error ? error.message : error,
         data: insertContact,
       });
-      throw new Error("Could not create contact. See logs for details.");
+      throw new Error("Could not create contact. Please check database connection.");
     }
   }
 
@@ -91,29 +90,33 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createReview(insertReview: InsertReview): Promise<Review> {
-  try {
-    const [review] = await db
-      .insert(reviews)
-      .values(insertReview)
-      .returning();
+    try {
+      const [review] = await db
+        .insert(reviews)
+        .values(insertReview)
+        .returning();
 
-    if (!review) {
-      throw new Error("Database did not return the new review.");
+      if (!review) {
+        throw new Error("Database did not return the new review.");
+      }
+
+      return review;
+    } catch (error) {
+      console.error("[DB] Failed to create review:", {
+        error: error instanceof Error ? error.message : error,
+        data: insertReview,
+      });
+      throw new Error("Could not create review. Please check database connection.");
     }
-
-    return review;
-  } catch (error) {
-    console.error("[DB] Failed to create review:", {
-      error,
-      data: insertReview,
-    });
-
-    throw new Error("Could not create review. See logs for details.");
   }
-}
 
   async getApprovedReviews(): Promise<Review[]> {
-    return await db.select().from(reviews).where(eq(reviews.isApproved, true));
+    try {
+      return await db.select().from(reviews).where(eq(reviews.isApproved, true));
+    } catch (error) {
+      console.error("[DB] Failed to fetch approved reviews:", error instanceof Error ? error.message : error);
+      throw new Error("Could not fetch reviews. Please check database connection.");
+    }
   }
 
   async getAllReviews(): Promise<Review[]> {

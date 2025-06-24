@@ -1,0 +1,103 @@
+7:15:56 PM [express] GET /api/reviews 500 in 27ms :: {"message":"Failed to fetch reviews"}
+[DB] Failed to create booking: {
+  error: ErrorEvent {
+    [Symbol(kTarget)]: WebSocket {
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      _binaryType: 'arraybuffer',
+      _closeCode: 1006,
+      _closeFrameReceived: false,
+      _closeFrameSent: false,
+      _closeMessage: <Buffer >,
+      _closeTimer: null,
+      _errorEmitted: true,
+      _extensions: {},
+      _paused: false,
+      _protocol: '',
+      _readyState: 3,
+      _receiver: null,
+      _sender: null,
+      _socket: null,
+      _bufferedAmount: 0,
+      _isServer: false,
+      _redirects: 0,
+      _autoPong: true,
+      _url: 'wss://localhost/v2',
+      _req: null,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kType)]: 'error',
+    [Symbol(kError)]: Error: connect ECONNREFUSED ::1:443
+        at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+        at __node_internal_exceptionWithHostPort (node:internal/errors:671:12)
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 443
+    },
+    [Symbol(kMessage)]: 'connect ECONNREFUSED ::1:443'
+  },
+  data: {
+    name: 'Yaw Nkansah',
+    email: 'yawnkansahjunior203@gmail.com',
+    country: 'Ghana',
+    phone: '597798316',
+    serviceType: 'Website Development',
+    projectDetails: 'Whattt'
+  }
+}
+7:16:26 PM [express] POST /api/bookings 500 in 7ms :: {"message":"Failed to create booking"}
+7:16:43 PM [express] POST /api/contacts 500 in 3ms :: {"message":"Failed to create contact"}
+[DB] Failed to create review: {
+  error: ErrorEvent {
+    [Symbol(kTarget)]: WebSocket {
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      _binaryType: 'arraybuffer',
+      _closeCode: 1006,
+      _closeFrameReceived: false,
+      _closeFrameSent: false,
+      _closeMessage: <Buffer >,
+      _closeTimer: null,
+      _errorEmitted: true,
+      _extensions: {},
+      _paused: false,
+      _protocol: '',
+      _readyState: 3,
+      _receiver: null,
+      _sender: null,
+      _socket: null,
+      _bufferedAmount: 0,
+      _isServer: false,
+      _redirects: 0,
+      _autoPong: true,
+      _url: 'wss://localhost/v2',
+      _req: null,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kType)]: 'error',
+    [Symbol(kError)]: Error: connect ECONNREFUSED ::1:443
+        at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+        at __node_internal_exceptionWithHostPort (node:internal/errors:671:12)
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 443
+    },
+    [Symbol(kMessage)]: 'connect ECONNREFUSED ::1:443'
+  },
+  data: {
+    name: 'Yaw Nkansah',
+    email: 'yawnkansahjunior203@gmail.com',
+    rating: 4,
+    message: 'dsfvevwvwcdcw dfwweccwe.',
+    serviceUsed: 'Animation Creation'
+  }
+}
+7:17:10 PM [express] POST /api/reviews 500 in 4ms :: {"message":"Failed to create review"}
