@@ -26,7 +26,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification
       try {
         await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
+          from: "noellesgroup4@gmail.com",
           to: "noellesgroup4@gmail.com",
           subject: `New Project Booking - ${bookingData.serviceType}`,
           html: `
@@ -72,7 +72,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification
       try {
         await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
+          from: "noellesgroup4@gmail.com",
           to: "noellesgroup4@gmail.com",
           subject: `New Contact Message - ${contactData.subject}`,
           html: `
@@ -116,7 +116,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification
       try {
         await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
+          from: "noellesgroup4@gmail.com",
           to: "noellesgroup4@gmail.com",
           subject: `New Customer Review - ${reviewData.rating} Stars`,
           html: `
