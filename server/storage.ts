@@ -1,5 +1,10 @@
 import { users, bookings, contacts, reviews, type User, type InsertUser, type InsertBooking, type Booking, type InsertContact, type Contact, type InsertReview, type Review } from "@shared/schema";
 import { db } from "./db";
+
+// Add error logging for debugging
+function logError(operation: string, error: any, data?: any) {
+  console.error(`[DB] Failed to ${operation}:`, { error, data });
+}
 import { eq } from "drizzle-orm";
 
 export interface IStorage {
@@ -61,11 +66,24 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createContact(insertContact: InsertContact): Promise<Contact> {
-    const [contact] = await db
-      .insert(contacts)
-      .values(insertContact)
-      .returning();
-    return contact;
+    try {
+      const [contact] = await db
+        .insert(contacts)
+        .values(insertContact)
+        .returning();
+      
+      if (!contact) {
+        throw new Error("Database did not return the new contact.");
+      }
+      
+      return contact;
+    } catch (error) {
+      console.error("[DB] Failed to create contact:", {
+        error,
+        data: insertContact,
+      });
+      throw new Error("Could not create contact. See logs for details.");
+    }
   }
 
   async getContacts(): Promise<Contact[]> {
