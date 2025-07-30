@@ -1,12 +1,9 @@
 import Navigation from "@/components/navigation";
 import Hero from "@/components/hero";
 import About from "@/components/about";
-import Services from "@/components/services";
-import Portfolio from "@/components/portfolio";
-import Team from "@/components/team";
-import Testimonials from "@/components/testimonials";
-import Reviews from "@/components/reviews";
-import Booking from "@/components/booking";
+import Features from "@/components/features";
+import HowItWorks from "@/components/how-it-works";
+import EarlyAccess from "@/components/early-access";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 
@@ -16,12 +13,9 @@ export default function Home() {
       <Navigation />
       <Hero />
       <About />
-      <Services />
-      <Portfolio />
-      <Team />
-      <Testimonials />
-      <Reviews />
-      <Booking />
+      <Features />
+      <HowItWorks />
+      <EarlyAccess />
       <Contact />
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertBookingSchema, insertContactSchema, insertReviewSchema } from "@shared/schema";
+import { insertLandInquirySchema, insertContactSchema, insertEarlyAccessSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from "nodemailer";
 
@@ -17,49 +17,95 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Booking routes
-  app.post("/api/bookings", async (req, res) => {
+  // Land inquiry routes
+  app.post("/api/land-inquiries", async (req, res) => {
     try {
-      const bookingData = insertBookingSchema.parse(req.body);
-      const booking = await storage.createBooking(bookingData);
+      const inquiryData = insertLandInquirySchema.parse(req.body);
+      const inquiry = await storage.createLandInquiry(inquiryData);
 
       // Send email notification
       try {
         await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
-          to: "noellesgroup4@gmail.com",
-          subject: `New Project Booking - ${bookingData.serviceType}`,
+          from: process.env.EMAIL_USER || "habigrid@gmail.com",
+          to: "habigrid@gmail.com",
+          subject: `New Land Inquiry - ${inquiryData.landType}`,
           html: `
-            <h2>New Project Booking Received</h2>
-            <p><strong>Name:</strong> ${bookingData.name}</p>
-            <p><strong>Email:</strong> ${bookingData.email}</p>
-            <p><strong>Country:</strong> ${bookingData.country}</p>
-            <p><strong>Phone:</strong> ${bookingData.phone}</p>
-            <p><strong>Service Type:</strong> ${bookingData.serviceType}</p>
-            <p><strong>Project Details:</strong></p>
-            <p>${bookingData.projectDetails}</p>
+            <h2>New Land Inquiry Received</h2>
+            <p><strong>Name:</strong> ${inquiryData.name}</p>
+            <p><strong>Email:</strong> ${inquiryData.email}</p>
+            <p><strong>Location:</strong> ${inquiryData.location}</p>
+            <p><strong>Phone:</strong> ${inquiryData.phone}</p>
+            <p><strong>Land Type:</strong> ${inquiryData.landType}</p>
+            <p><strong>Budget:</strong> ${inquiryData.budget}</p>
+            <p><strong>Message:</strong></p>
+            <p>${inquiryData.message || 'No additional message'}</p>
           `,
         });
       } catch (emailError) {
         console.error("Email notification failed:", emailError);
       }
 
-      res.json(booking);
+      res.json(inquiry);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        res.status(400).json({ message: "Invalid booking data", errors: error.errors });
+        res.status(400).json({ message: "Invalid inquiry data", errors: error.errors });
       } else {
-        res.status(500).json({ message: "Failed to create booking" });
+        res.status(500).json({ message: "Failed to create land inquiry" });
       }
     }
   });
 
-  app.get("/api/bookings", async (req, res) => {
+  app.get("/api/land-inquiries", async (req, res) => {
     try {
-      const bookings = await storage.getBookings();
-      res.json(bookings);
+      const inquiries = await storage.getLandInquiries();
+      res.json(inquiries);
     } catch (error) {
-      res.status(500).json({ message: "Failed to fetch bookings" });
+      res.status(500).json({ message: "Failed to fetch land inquiries" });
+    }
+  });
+
+  // Early access routes
+  app.post("/api/early-access", async (req, res) => {
+    try {
+      const earlyAccessData = insertEarlyAccessSchema.parse(req.body);
+      const earlyAccess = await storage.createEarlyAccess(earlyAccessData);
+
+      // Send email notification
+      try {
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER || "habigrid@gmail.com",
+          to: "habigrid@gmail.com",
+          subject: `New Early Access Registration - ${earlyAccessData.userType}`,
+          html: `
+            <h2>New Early Access Registration</h2>
+            <p><strong>Name:</strong> ${earlyAccessData.name}</p>
+            <p><strong>Email:</strong> ${earlyAccessData.email}</p>
+            <p><strong>Phone:</strong> ${earlyAccessData.phone || 'Not provided'}</p>
+            <p><strong>User Type:</strong> ${earlyAccessData.userType}</p>
+            <p><strong>Location:</strong> ${earlyAccessData.location || 'Not specified'}</p>
+            <p><strong>Interests:</strong> ${earlyAccessData.interests || 'Not specified'}</p>
+          `,
+        });
+      } catch (emailError) {
+        console.error("Email notification failed:", emailError);
+      }
+
+      res.json(earlyAccess);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid early access data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create early access record" });
+      }
+    }
+  });
+
+  app.get("/api/early-access", async (req, res) => {
+    try {
+      const earlyAccessList = await storage.getEarlyAccessList();
+      res.json(earlyAccessList);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch early access list" });
     }
   });
 
@@ -72,8 +118,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification
       try {
         await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
-          to: "noellesgroup4@gmail.com",
+          from: process.env.EMAIL_USER || "habigrid@gmail.com",
+          to: "habigrid@gmail.com",
           subject: `New Contact Message - ${contactData.subject}`,
           html: `
             <h2>New Contact Message</h2>
@@ -107,51 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Review routes
-  app.post("/api/reviews", async (req, res) => {
-    try {
-      const reviewData = insertReviewSchema.parse(req.body);
-      const review = await storage.createReview(reviewData);
 
-      // Send email notification
-      try {
-        await transporter.sendMail({
-          from: process.env.EMAIL_USER || "noellesgroup4@gmail.com",
-          to: "noellesgroup4@gmail.com",
-          subject: `New Customer Review - ${reviewData.rating} Stars`,
-          html: `
-            <h2>New Customer Review Received</h2>
-            <p><strong>Name:</strong> ${reviewData.name}</p>
-            <p><strong>Email:</strong> ${reviewData.email}</p>
-            <p><strong>Rating:</strong> ${reviewData.rating}/5 stars</p>
-            <p><strong>Service Used:</strong> ${reviewData.serviceUsed || 'Not specified'}</p>
-            <p><strong>Review:</strong></p>
-            <p>${reviewData.message}</p>
-            <p><em>Note: Review needs approval before appearing on the website.</em></p>
-          `,
-        });
-      } catch (emailError) {
-        console.error("Email notification failed:", emailError);
-      }
-
-      res.json(review);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        res.status(400).json({ message: "Invalid review data", errors: error.errors });
-      } else {
-        res.status(500).json({ message: "Failed to create review" });
-      }
-    }
-  });
-
-  app.get("/api/reviews", async (req, res) => {
-    try {
-      const reviews = await storage.getApprovedReviews();
-      res.json(reviews);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to fetch reviews" });
-    }
-  });
 
   const httpServer = createServer(app);
   return httpServer;

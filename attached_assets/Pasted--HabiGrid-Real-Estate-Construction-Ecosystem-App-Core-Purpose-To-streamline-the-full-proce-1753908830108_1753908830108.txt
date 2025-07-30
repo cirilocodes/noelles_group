@@ -1,0 +1,176 @@
+🏗️ HabiGrid – Real Estate & Construction Ecosystem App
+Core Purpose:
+To streamline the full process of land acquisition, building, furnishing, and maintenance by connecting Consumers, Salespersons, and Artisans/Workers in one trusted, verified digital marketplace.
+
+🔐 User Types and Access Modes
+
+Consumers (Buyers/Clients)
+
+Browse and buy verified lands and properties.
+
+Hire artisans (builders, plumbers, electricians, etc.).
+
+Buy construction materials.
+
+Track project progress and transaction history.
+
+Use chat for negotiation and updates.
+
+Must verify identity (ID upload & basic KYC).
+
+
+Salespersons (Land/Property Agents)
+
+List lands and buildings for sale with pictures, location, and documents.
+
+Choose listing type: Verified or Unverified (Verified needs land document proof).
+
+Chat with interested buyers in-app.
+
+Option to handle payments via HabiGrid (wallet or escrow).
+
+Verification mandatory to post listings.
+
+
+Artisans & Workers
+
+Create service profiles (type of work, experience, price per unit or project).
+
+Upload portfolio (before/after project photos).
+
+Set payment structure: Two-part (advance and final) or Three-part (advance, mid, final).
+
+Consumers leave ratings and reviews for credibility.
+
+Can accept or reject job requests via the app.
+
+
+💳 Payments & Wallet System
+
+Escrow Wallet Integration
+
+Consumer deposits payment into HabiGrid wallet.
+
+Funds released in stages (based on agreement) after approval.
+
+Reduces fraud and builds trust.
+
+Support for Payment Methods
+
+Mobile money (MTN MoMo, Vodafone Cash, etc.)
+
+Bank transfer
+
+(Future) Cryptocurrency option with smart contract-based escrow
+
+Option for offline/cash registration with local agents (with terms clearly marked as “offline deal”)
+
+Wallet Features:
+
+In-app wallet to track transactions
+
+Payment breakdowns, invoice receipts
+
+Refunds in case of disputes (handled by HabiGrid arbitration team)
+
+
+🛡️ Verification & Safety Features
+
+ID Verification (National ID, Voter’s Card, etc.)
+
+Admin approval for account activation
+
+Fake listing detection AI (future roadmap)
+
+Manual review of flagged profiles or listings
+
+Scam reporting & user blocking system
+
+In-app call and chat masking real numbers for privacy
+
+
+📱 Platform Rollout
+
+Android App First (APK and Google Play)
+
+
+iOS Release Later (after Android is stable)
+
+
+Admin Dashboard Panel (Web-based) for HabiGrid internal operations
+
+
+⚙️ Automation with Oversight
+Automated payment milestones & status tracking
+
+
+Smart notifications (project updates, chat messages, wallet transactions)
+
+
+Chatbots for basic queries (with option to talk to human support)
+
+
+Human arbitration in disputes to ensure fairness
+
+
+💡 Additional Features to Consider
+
+Push Notifications: For new job posts, new listings, project updates
+
+Search Filters: Location, price range, verification status, reviews
+
+Material Store: Suppliers can register to list building materials
+
+Task Bundling: Consumer can create a full project and hire multiple roles (e.g., Mason + Plumber + Electrician in one go)
+
+Service Recommendations: Based on user activity and needs
+
+Progress Logs & Photo Updates: Artisans upload progress pics for transparency
+
+
+💰 Revenue Streams
+
+Commission on Transactions
+
+Fixed or percentage fee on successful escrow payments
+
+Different rates for property sales vs. service jobs
+
+Subscription Tiers
+
+Free basic account
+
+Premium for artisans and agents: More listings, visibility boost, job analytics
+
+Featured Listings & Ads
+
+Pay to boost land/property listings
+
+Promote artisan profiles or services to the top of search results
+
+In-App Material Marketplace
+
+Charge small transaction fees on material sales
+
+Partner with vendors for revenue sharing
+
+Verification Fees
+
+Charge a one-time or renewable verification fee for salespersons and artisans
+
+Service Bundles
+
+Let consumers pay HabiGrid to handle full project management for a fee
+
+
+🚀 Next Steps
+
+Wireframe UI for each user mode
+
+Database schema (users, listings, chats, wallets, payments, jobs)
+
+Start with MVP (core flows only)
+
+Legal consultation for escrow handling
+
+Early testers and feedback loop before public release

@@ -8,14 +8,15 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
 });
 
-export const bookings = pgTable("bookings", {
+export const landInquiries = pgTable("land_inquiries", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
-  country: text("country").notNull(),
   phone: text("phone").notNull(),
-  serviceType: text("service_type").notNull(),
-  projectDetails: text("project_details").notNull(),
+  location: text("location").notNull(),
+  budget: text("budget").notNull(),
+  landType: text("land_type").notNull(), // residential, commercial, agricultural
+  message: text("message"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -31,14 +32,14 @@ export const contacts = pgTable("contacts", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const reviews = pgTable("reviews", {
+export const earlyAccess = pgTable("early_access", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  email: text("email").notNull(),
-  rating: integer("rating").notNull(),
-  message: text("message").notNull(),
-  serviceUsed: text("service_used"),
-  isApproved: boolean("is_approved").default(false).notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone"),
+  userType: text("user_type").notNull(), // consumer, salesperson, artisan
+  location: text("location"),
+  interests: text("interests"), // land_buying, construction, both
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -47,7 +48,7 @@ export const insertUserSchema = createInsertSchema(users).pick({
   password: true,
 });
 
-export const insertBookingSchema = createInsertSchema(bookings).omit({
+export const insertLandInquirySchema = createInsertSchema(landInquiries).omit({
   id: true,
   createdAt: true,
 });
@@ -57,17 +58,16 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   createdAt: true,
 });
 
-export const insertReviewSchema = createInsertSchema(reviews).omit({
+export const insertEarlyAccessSchema = createInsertSchema(earlyAccess).omit({
   id: true,
   createdAt: true,
-  isApproved: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
-export type InsertBooking = z.infer<typeof insertBookingSchema>;
-export type Booking = typeof bookings.$inferSelect;
+export type InsertLandInquiry = z.infer<typeof insertLandInquirySchema>;
+export type LandInquiry = typeof landInquiries.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
-export type InsertReview = z.infer<typeof insertReviewSchema>;
-export type Review = typeof reviews.$inferSelect;
+export type InsertEarlyAccess = z.infer<typeof insertEarlyAccessSchema>;
+export type EarlyAccess = typeof earlyAccess.$inferSelect;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logoImage from "@assets/N1_1750686199510.jpg";
+import HabiGridLogo from "./habigrid-logo";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,74 +15,64 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass-effect">
+    <nav className="fixed top-0 w-full z-50 bg-emerald-900/90 backdrop-blur-md border-b border-emerald-700/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-3">
-            <img 
-              src={logoImage} 
-              alt="Noelles Group Logo" 
-              className="w-12 h-12 rounded-xl shadow-lg object-cover"
-            />
-            <span className="text-2xl font-bold gradient-text">Noelles Group</span>
+            <HabiGridLogo className="w-10 h-10 text-emerald-400" />
+            <span className="text-2xl font-bold text-white">HabiGrid</span>
           </div>
           
           <div className="hidden md:flex space-x-8">
             <button 
               onClick={() => scrollToSection('home')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('about')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
               About
             </button>
             <button 
-              onClick={() => scrollToSection('services')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              onClick={() => scrollToSection('features')}
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
-              Services
+              Features
             </button>
             <button 
-              onClick={() => scrollToSection('portfolio')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              onClick={() => scrollToSection('how-it-works')}
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
-              Portfolio
+              How It Works
             </button>
             <button 
-              onClick={() => scrollToSection('team')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              onClick={() => scrollToSection('early-access')}
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
-              Team
-            </button>
-            <button 
-              onClick={() => scrollToSection('reviews')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
-            >
-              Reviews
+              Early Access
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium"
+              className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium"
             >
               Contact
             </button>
           </div>
 
           <Button 
-            onClick={() => scrollToSection('booking')}
-            className="hidden md:block bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] hover:shadow-lg hover:shadow-[hsl(262,52%,47%)]/25 transition-all duration-300"
+            onClick={() => scrollToSection('early-access')}
+            className="hidden md:block bg-white text-emerald-900 hover:bg-emerald-50 transition-all duration-300"
           >
-            Get Started
+            Join Early Access
           </Button>
 
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-white"
+            className="md:hidden text-emerald-100"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -91,55 +81,49 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-[hsl(0,0%,6%)] rounded-lg mb-4 p-4">
+          <div className="md:hidden bg-emerald-800/95 backdrop-blur-sm rounded-lg mb-4 p-4">
             <div className="flex flex-col space-y-4">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
                 About
               </button>
               <button 
-                onClick={() => scrollToSection('services')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                onClick={() => scrollToSection('features')}
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
-                Services
+                Features
               </button>
               <button 
-                onClick={() => scrollToSection('portfolio')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                onClick={() => scrollToSection('how-it-works')}
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
-                Portfolio
+                How It Works
               </button>
               <button 
-                onClick={() => scrollToSection('team')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                onClick={() => scrollToSection('early-access')}
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
-                Team
-              </button>
-              <button 
-                onClick={() => scrollToSection('reviews')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
-              >
-                Reviews
+                Early Access
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-white hover:text-[hsl(262,52%,47%)] transition-colors duration-300 font-medium text-left"
+                className="text-emerald-100 hover:text-emerald-300 transition-colors duration-300 font-medium text-left"
               >
                 Contact
               </button>
               <Button 
-                onClick={() => scrollToSection('booking')}
-                className="bg-gradient-to-r from-[hsl(262,52%,47%)] to-[hsl(217,91%,60%)] w-full"
+                onClick={() => scrollToSection('early-access')}
+                className="bg-white text-emerald-900 w-full hover:bg-emerald-50"
               >
-                Get Started
+                Join Early Access
               </Button>
             </div>
           </div>

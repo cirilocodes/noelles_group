@@ -1,4 +1,4 @@
-import { users, bookings, contacts, reviews, type User, type InsertUser, type InsertBooking, type Booking, type InsertContact, type Contact, type InsertReview, type Review } from "@shared/schema";
+import { users, landInquiries, contacts, earlyAccess, type User, type InsertUser, type InsertLandInquiry, type LandInquiry, type InsertContact, type Contact, type InsertEarlyAccess, type EarlyAccess } from "@shared/schema";
 import { db } from "./db";
 
 // Add error logging for debugging
@@ -11,13 +11,12 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  createBooking(booking: InsertBooking): Promise<Booking>;
-  getBookings(): Promise<Booking[]>;
+  createLandInquiry(inquiry: InsertLandInquiry): Promise<LandInquiry>;
+  getLandInquiries(): Promise<LandInquiry[]>;
   createContact(contact: InsertContact): Promise<Contact>;
   getContacts(): Promise<Contact[]>;
-  createReview(review: InsertReview): Promise<Review>;
-  getApprovedReviews(): Promise<Review[]>;
-  getAllReviews(): Promise<Review[]>;
+  createEarlyAccess(earlyAccess: InsertEarlyAccess): Promise<EarlyAccess>;
+  getEarlyAccessList(): Promise<EarlyAccess[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -39,29 +38,29 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  async createBooking(insertBooking: InsertBooking): Promise<Booking> {
+  async createLandInquiry(insertInquiry: InsertLandInquiry): Promise<LandInquiry> {
     try {
-      const [booking] = await db
-        .insert(bookings)
-        .values(insertBooking)
+      const [inquiry] = await db
+        .insert(landInquiries)
+        .values(insertInquiry)
         .returning();
 
-      if (!booking) {
-        throw new Error("Database did not return the new booking.");
+      if (!inquiry) {
+        throw new Error("Database did not return the new land inquiry.");
       }
 
-      return booking;
+      return inquiry;
     } catch (error) {
-      console.error("[DB] Failed to create booking:", {
+      console.error("[DB] Failed to create land inquiry:", {
         error: error instanceof Error ? error.message : error,
-        data: insertBooking,
+        data: insertInquiry,
       });
-      throw new Error("Could not create booking. Please check database connection.");
+      throw new Error("Could not create land inquiry. Please check database connection.");
     }
   }
 
-  async getBookings(): Promise<Booking[]> {
-    return await db.select().from(bookings);
+  async getLandInquiries(): Promise<LandInquiry[]> {
+    return await db.select().from(landInquiries);
   }
 
   async createContact(insertContact: InsertContact): Promise<Contact> {
@@ -89,38 +88,34 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(contacts);
   }
 
-  async createReview(insertReview: InsertReview): Promise<Review> {
+  async createEarlyAccess(insertEarlyAccess: InsertEarlyAccess): Promise<EarlyAccess> {
     try {
-      const [review] = await db
-        .insert(reviews)
-        .values(insertReview)
+      const [earlyAccessRecord] = await db
+        .insert(earlyAccess)
+        .values(insertEarlyAccess)
         .returning();
 
-      if (!review) {
-        throw new Error("Database did not return the new review.");
+      if (!earlyAccessRecord) {
+        throw new Error("Database did not return the new early access record.");
       }
 
-      return review;
+      return earlyAccessRecord;
     } catch (error) {
-      console.error("[DB] Failed to create review:", {
+      console.error("[DB] Failed to create early access record:", {
         error: error instanceof Error ? error.message : error,
-        data: insertReview,
+        data: insertEarlyAccess,
       });
-      throw new Error("Could not create review. Please check database connection.");
+      throw new Error("Could not create early access record. Please check database connection.");
     }
   }
 
-  async getApprovedReviews(): Promise<Review[]> {
+  async getEarlyAccessList(): Promise<EarlyAccess[]> {
     try {
-      return await db.select().from(reviews).where(eq(reviews.isApproved, true));
+      return await db.select().from(earlyAccess);
     } catch (error) {
-      console.error("[DB] Failed to fetch approved reviews:", error instanceof Error ? error.message : error);
-      throw new Error("Could not fetch reviews. Please check database connection.");
+      console.error("[DB] Failed to fetch early access list:", error instanceof Error ? error.message : error);
+      throw new Error("Could not fetch early access list. Please check database connection.");
     }
-  }
-
-  async getAllReviews(): Promise<Review[]> {
-    return await db.select().from(reviews);
   }
 }
 
