@@ -33,17 +33,16 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
-    host: "0.0.0.0",
-    port: 5173,
-    allowedHosts: [
-      "localhost",
-      ".replit.dev",
-      ".repl.co",
-      "7792ff5e-b69a-4c1a-8cdd-5b34b71b4f95-00-1w0isqdk6b6g3.kirk.replit.dev"
-    ],
+    host: true,
+    port: 5173, 
+    allowedHosts: "all",
+    strictPort: false,
     fs: {
-      strict: true,
-      deny: ["**/.*"],
+      strict: false,
+      allow: [".."],
+    },
+    hmr: {
+      clientPort: 443
     },
   },
 });
