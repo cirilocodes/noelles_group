@@ -14,8 +14,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">HabiGrid</span>
             </div>
             <p className="text-emerald-200 mb-6 leading-relaxed">
-              Ghana's trusted digital gateway for verified land acquisition and construction support. 
-              Building futures, one home at a time.
+              Ghana's comprehensive real estate universe. From the simplest artisan hire to the most complex property acquisition - everything you need, all in one revolutionary platform.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center hover:bg-emerald-700 transition-colors">
@@ -34,22 +33,22 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-6">Platform</h3>
+            <h3 className="text-lg font-semibold mb-6">Real Estate Universe</h3>
             <ul className="space-y-3 text-emerald-200">
-              <li><a href="#features" className="hover:text-emerald-300 transition-colors">Features</a></li>
-              <li><a href="#how-it-works" className="hover:text-emerald-300 transition-colors">How It Works</a></li>
-              <li><a href="#early-access" className="hover:text-emerald-300 transition-colors">Early Access</a></li>
-              <li><a href="#" className="hover:text-emerald-300 transition-colors">Pricing</a></li>
+              <li><a href="#features" className="hover:text-emerald-300 transition-colors">Properties & Land</a></li>
+              <li><a href="#how-it-works" className="hover:text-emerald-300 transition-colors">Services & Professionals</a></li>
+              <li><a href="#newsletter" className="hover:text-emerald-300 transition-colors">Launch Updates</a></li>
+              <li><a href="#" className="hover:text-emerald-300 transition-colors">Marketplace</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <h3 className="text-lg font-semibold mb-6">Everything You Need</h3>
             <ul className="space-y-3 text-emerald-200">
-              <li><a href="#" className="hover:text-emerald-300 transition-colors">Land Verification</a></li>
-              <li><a href="#" className="hover:text-emerald-300 transition-colors">Artisan Network</a></li>
-              <li><a href="#" className="hover:text-emerald-300 transition-colors">Secure Payments</a></li>
-              <li><a href="#" className="hover:text-emerald-300 transition-colors">Project Management</a></li>
+              <li><a href="#" className="hover:text-emerald-300 transition-colors">Buy, Sell, Rent</a></li>
+              <li><a href="#" className="hover:text-emerald-300 transition-colors">Construction & Repairs</a></li>
+              <li><a href="#" className="hover:text-emerald-300 transition-colors">Legal & Financial</a></li>
+              <li><a href="#" className="hover:text-emerald-300 transition-colors">Property Management</a></li>
             </ul>
           </div>
 
@@ -86,7 +85,7 @@ export default function Footer() {
           
           <div className="mt-6 text-center">
             <p className="text-emerald-400 font-medium text-lg">
-              "Not another Promise, a blueprint for those who build futures"
+              "Your Real Estate Universe - The First and Final Destination"
             </p>
           </div>
         </div>

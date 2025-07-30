@@ -4,33 +4,33 @@ export default function HowItWorks() {
   const steps = [
     {
       icon: Search,
-      title: "Browse & Search",
-      description: "Search for verified land listings or trusted artisans in your preferred location",
-      details: "Use our advanced filters to find exactly what you need"
+      title: "Discover Everything",
+      description: "Search through Ghana's most comprehensive real estate ecosystem - properties, services, professionals",
+      details: "AI-powered search that understands your specific needs"
     },
     {
       icon: FileCheck,
-      title: "Verify & Connect",
-      description: "Review verified documents, ratings, and portfolios before making contact",
-      details: "All listings and professionals undergo strict verification"
+      title: "Verify & Choose",
+      description: "Every listing, every professional, every service is verified - no exceptions, no surprises",
+      details: "Complete transparency with ratings, reviews, and credentials"
     },
     {
       icon: Users,
-      title: "Communicate Safely",
-      description: "Use our secure in-app messaging to negotiate terms and discuss project details",
-      details: "Your privacy is protected with communication masking"
+      title: "Connect Seamlessly",
+      description: "Direct communication with property owners, agents, and service professionals",
+      details: "Built-in messaging, video calls, and document sharing"
     },
     {
       icon: CreditCard,
-      title: "Secure Payment",
-      description: "Make milestone-based payments through our escrow system for guaranteed protection",
-      details: "Funds are released only when milestones are achieved"
+      title: "Transact Securely",
+      description: "Flexible payment options with escrow protection for every transaction type",
+      details: "From property purchases to service payments - all secured"
     },
     {
       icon: Home,
-      title: "Build Your Future",
-      description: "Track progress, communicate with professionals, and achieve your homeownership goals",
-      details: "Complete support from land purchase to move-in"
+      title: "Achieve Your Dreams",
+      description: "Whether buying land, renting a home, or building an empire - we're with you throughout",
+      details: "Complete support from search to settlement and beyond"
     }
   ];
 
@@ -39,12 +39,12 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            How HabiGrid
-            <span className="text-emerald-600 block">Works</span>
+            Your Real Estate Journey
+            <span className="text-emerald-600 block">Simplified</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A simple, secure process that transforms the way Ghanaians acquire land and build homes. 
-            From search to settlement, we're with you every step of the way.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            From the simplest home repair to the most complex property acquisition - HabiGrid transforms 
+            every real estate experience into a seamless, secure, and satisfying journey.
           </p>
         </div>
 

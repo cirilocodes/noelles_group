@@ -4,50 +4,50 @@ export default function Features() {
   const features = [
     {
       icon: Shield,
-      title: "Verified Land Listings",
-      description: "All properties undergo strict document verification to prevent fraud and ensure legitimacy",
+      title: "Everything Verified",
+      description: "Every property, every professional, every service undergoes strict verification - no exceptions",
       color: "emerald"
     },
     {
       icon: Users,
-      title: "Trusted Artisan Network",
-      description: "Connect with vetted builders, plumbers, electricians, and other construction professionals",
+      title: "Complete Professional Network",
+      description: "From painters to architects, plumbers to project managers - every expert you need",
       color: "blue"
     },
     {
       icon: CreditCard,
-      title: "Secure Escrow Payments",
-      description: "Milestone-based payments with escrow protection for both buyers and service providers",
+      title: "Smart Payment Solutions",
+      description: "Flexible payment options with escrow protection for all transaction types",
       color: "purple"
     },
     {
       icon: MapPin,
-      title: "Location-Based Search",
-      description: "Find properties and services in your preferred locations across Ghana",
+      title: "Nationwide Coverage",
+      description: "Properties and services available across all regions of Ghana",
       color: "orange"
     },
     {
       icon: Search,
-      title: "Advanced Filtering",
-      description: "Search by price, location, property type, verification status, and professional ratings",
+      title: "Intelligent Matching",
+      description: "AI-powered recommendations that understand your specific needs and budget",
       color: "indigo"
     },
     {
       icon: MessageCircle,
-      title: "In-App Communication",
-      description: "Secure messaging with privacy protection and communication history tracking",
+      title: "Seamless Communication",
+      description: "Built-in messaging, video calls, and document sharing for easy collaboration",
       color: "green"
     },
     {
       icon: Star,
-      title: "Rating & Review System",
-      description: "Build trust through transparent feedback from verified transactions",
+      title: "Reputation System",
+      description: "Transparent ratings and reviews from real transactions across all services",
       color: "yellow"
     },
     {
       icon: FileCheck,
-      title: "Digital Documentation",
-      description: "Streamlined paperwork and digital contracts for faster, more secure transactions",
+      title: "Digital Everything",
+      description: "Contracts, payments, documentation - all handled digitally for maximum efficiency",
       color: "red"
     }
   ];
@@ -71,12 +71,12 @@ export default function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Powerful Features for
-            <span className="text-emerald-600 block">Secure Transactions</span>
+            The Complete Real Estate
+            <span className="text-emerald-600 block">Ecosystem</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            HabiGrid provides comprehensive tools and features to ensure safe, transparent, 
-            and efficient land acquisition and construction processes.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            HabiGrid brings together every aspect of Ghana's real estate market - properties, professionals, 
+            services, and solutions - all powered by cutting-edge technology and uncompromising verification.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function Features() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                Multiple User Types, One Platform
+                Everyone's Real Estate Universe
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -104,8 +104,8 @@ export default function Features() {
                     <Users className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">For Consumers</h4>
-                    <p className="text-gray-600">Browse verified lands, hire trusted artisans, track projects, and make secure payments</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Property Seekers</h4>
+                    <p className="text-gray-600">Find, compare, and secure any property - land, homes, commercial spaces, rentals</p>
                   </div>
                 </div>
                 
@@ -114,8 +114,8 @@ export default function Features() {
                     <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">For Land Agents</h4>
-                    <p className="text-gray-600">List verified properties, connect with buyers, and manage transactions securely</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Property Owners</h4>
+                    <p className="text-gray-600">List, manage, rent, or sell properties with maximum exposure and security</p>
                   </div>
                 </div>
                 
@@ -124,8 +124,8 @@ export default function Features() {
                     <FileCheck className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">For Artisans</h4>
-                    <p className="text-gray-600">Create service profiles, showcase work portfolios, and receive milestone payments</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Service Professionals</h4>
+                    <p className="text-gray-600">Every real estate service - construction, maintenance, legal, financial, design</p>
                   </div>
                 </div>
               </div>
