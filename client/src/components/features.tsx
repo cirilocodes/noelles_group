@@ -4,50 +4,50 @@ export default function Features() {
   const features = [
     {
       icon: Shield,
-      title: "Everything Verified",
-      description: "Every property, every professional, every service undergoes strict verification - no exceptions",
+      title: "Always Verified",
+      description: "No fake listings or unreliable people - everything is checked and double-checked",
       color: "emerald"
     },
     {
       icon: Users,
-      title: "Complete Professional Network",
-      description: "From painters to architects, plumbers to project managers - every expert you need",
+      title: "Top Professionals",
+      description: "The best contractors, agents, and service providers - all pre-screened for you",
       color: "blue"
     },
     {
       icon: CreditCard,
-      title: "Smart Payment Solutions",
-      description: "Flexible payment options with escrow protection for all transaction types",
+      title: "Safe Payments",
+      description: "Your money is protected with secure payment options and escrow services",
       color: "purple"
     },
     {
       icon: MapPin,
-      title: "Nationwide Coverage",
-      description: "Properties and services available across all regions of Ghana",
+      title: "Easier & Faster Rentals",
+      description: "Find and secure rental properties quickly with our streamlined rental process",
       color: "orange"
     },
     {
       icon: Search,
-      title: "Intelligent Matching",
-      description: "AI-powered recommendations that understand your specific needs and budget",
+      title: "Smart Search",
+      description: "Tell us what you want and we'll find the perfect matches for your budget",
       color: "indigo"
     },
     {
       icon: MessageCircle,
-      title: "Seamless Communication",
-      description: "Built-in messaging, video calls, and document sharing for easy collaboration",
+      title: "Easy Communication",
+      description: "Chat directly with property owners and service providers - no middlemen",
       color: "green"
     },
     {
       icon: Star,
-      title: "Reputation System",
-      description: "Transparent ratings and reviews from real transactions across all services",
+      title: "Real Reviews",
+      description: "See what other people really think with genuine reviews from actual customers",
       color: "yellow"
     },
     {
       icon: FileCheck,
-      title: "Digital Everything",
-      description: "Contracts, payments, documentation - all handled digitally for maximum efficiency",
+      title: "Paperless Process",
+      description: "Handle everything online - no more printing, scanning, or waiting in lines",
       color: "red"
     }
   ];
@@ -71,12 +71,12 @@ export default function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The Complete Real Estate
-            <span className="text-emerald-600 block">Ecosystem</span>
+            What Makes Us
+            <span className="text-emerald-600 block">Different</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            HabiGrid brings together every aspect of Ghana's real estate market - properties, professionals, 
-            services, and solutions - all powered by cutting-edge technology and uncompromising verification.
+            We've thought of everything to make your property journey smooth, safe, and successful. 
+            Here's what sets HabiGrid apart from the rest.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function Features() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                Everyone's Real Estate Universe
+                Perfect For Everyone
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -104,8 +104,8 @@ export default function Features() {
                     <Users className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Property Seekers</h4>
-                    <p className="text-gray-600">Find, compare, and secure any property - land, homes, commercial spaces, rentals</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Looking for a Place?</h4>
+                    <p className="text-gray-600">Find apartments, houses, land, or commercial spaces with ease</p>
                   </div>
                 </div>
                 
@@ -114,8 +114,8 @@ export default function Features() {
                     <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Property Owners</h4>
-                    <p className="text-gray-600">List, manage, rent, or sell properties with maximum exposure and security</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Have Property to Rent/Sell?</h4>
+                    <p className="text-gray-600">List your property and reach serious buyers and tenants</p>
                   </div>
                 </div>
                 
@@ -124,8 +124,8 @@ export default function Features() {
                     <FileCheck className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Service Professionals</h4>
-                    <p className="text-gray-600">Every real estate service - construction, maintenance, legal, financial, design</p>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Need Help with Your Property?</h4>
+                    <p className="text-gray-600">Connect with trusted contractors, cleaners, and maintenance experts</p>
                   </div>
                 </div>
               </div>

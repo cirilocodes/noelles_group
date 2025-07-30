@@ -32,18 +32,18 @@ export default function Hero() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-              Your Real Estate
-              <span className="text-emerald-300 block">Universe</span>
-              <span className="text-emerald-400">Awaits</span>
+              Find Your
+              <span className="text-emerald-300 block">Perfect Home</span>
+              <span className="text-emerald-400">Effortlessly</span>
             </h1>
             
             <p className="text-xl text-emerald-100 mb-4 leading-relaxed font-medium">
-              The first and final destination for everything real estate
+              Ghana's smartest way to buy, rent, and build
             </p>
             
             <p className="text-lg text-emerald-200/90 mb-8 leading-relaxed">
-              From finding the perfect artisan to securing your dream property. From painting a room to building an empire. 
-              HabiGrid is Ghana's comprehensive real estate ecosystem where every property dream becomes reality.
+              Whether you're looking for your first apartment, dream land, or the perfect contractor - 
+              we've got everything you need in one simple platform. No stress, no hassle, just results.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -67,11 +67,11 @@ export default function Hero() {
             <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/20">
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-emerald-300" />
-                <span className="text-emerald-200 text-sm">Verified Everything</span>
+                <span className="text-emerald-200 text-sm">100% Verified</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-emerald-300" />
-                <span className="text-emerald-200 text-sm">All-in-One Platform</span>
+                <span className="text-emerald-200 text-sm">Trusted by Thousands</span>
               </div>
               <div className="flex items-center gap-2">
                 <Building2 className="w-5 h-5 text-emerald-300" />

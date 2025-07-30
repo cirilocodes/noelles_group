@@ -52,19 +52,18 @@ export default function Newsletter() {
         </div>
 
         <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-          Be Part of the
-          <span className="text-emerald-300 block">Real Estate</span>
-          <span className="text-emerald-400">Revolution</span>
+          Get Ready for
+          <span className="text-emerald-300 block">Something</span>
+          <span className="text-emerald-400">Amazing</span>
         </h2>
 
         <p className="text-xl text-emerald-100 mb-4 leading-relaxed">
-          The ultimate real estate powerhouse is launching soon
+          Ghana's smartest property platform is almost here
         </p>
 
         <p className="text-lg text-emerald-200/90 mb-12 leading-relaxed max-w-3xl mx-auto">
-          Get exclusive early access to Ghana's most comprehensive real estate ecosystem. 
-          From the simplest artisan hire to the most complex building projects - everything you need, 
-          all in one revolutionary platform.
+          Be the first to know when we launch. Get exclusive access to the best properties, 
+          most reliable professionals, and easiest way to find your perfect home in Ghana.
         </p>
 
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">

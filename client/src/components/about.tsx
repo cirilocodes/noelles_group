@@ -6,46 +6,46 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The Real Estate
-            <span className="text-emerald-600 block">Powerhouse</span>
-            <span className="text-emerald-500">of Ghana</span>
+            Everything You Need for
+            <span className="text-emerald-600 block">Your Property Journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            HabiGrid is your comprehensive real estate universe - the first and final destination for everything property-related. 
-            From the simplest room paint job to the most complex building projects, from finding the perfect artisan to securing your dream land.
+            From finding your dream apartment to buying land or hiring the right contractor - 
+            HabiGrid makes it simple. One platform, countless possibilities, zero stress.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Everything Real Estate, One Platform</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">Why People Love HabiGrid</h3>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Imagine never having to search multiple places for your real estate needs again. HabiGrid brings together 
-              every service, every professional, and every opportunity in Ghana's real estate ecosystem under one revolutionary platform.
+              No more endless searching or wondering if you're getting a fair deal. We've brought together 
+              the best properties, most reliable professionals, and smartest tools so you can focus on 
+              what matters - finding your perfect home or investment.
             </p>
             
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <Home className="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Properties & Land</h4>
-                  <p className="text-gray-600">Buy, sell, rent - residential, commercial, agricultural properties</p>
+                  <h4 className="font-semibold text-gray-900 mb-1">Find Your Perfect Place</h4>
+                  <p className="text-gray-600">Apartments, houses, land - all verified and fairly priced</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
                 <Hammer className="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Services & Artisans</h4>
-                  <p className="text-gray-600">Find verified professionals for any project - from painting to construction</p>
+                  <h4 className="font-semibold text-gray-900 mb-1">Reliable Professionals</h4>
+                  <p className="text-gray-600">Trusted contractors, electricians, plumbers - all pre-screened</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-emerald-600 mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Location Intelligence</h4>
-                  <p className="text-gray-600">Smart recommendations based on your needs, budget, and preferences</p>
+                  <h4 className="font-semibold text-gray-900 mb-1">Smart Recommendations</h4>
+                  <p className="text-gray-600">We learn what you like and show you the best options first</p>
                 </div>
               </div>
             </div>
@@ -62,10 +62,10 @@ export default function About() {
         </div>
 
         <div className="text-center mb-16">
-          <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Promise</h3>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            To become Ghana's undisputed real estate superpower - the ultimate destination where consumers, homeowners, 
-            landlords, tenants, and professionals converge to make every property dream a reality.
+            We're building Ghana's most trusted place for real estate. Where finding your next home 
+            is actually enjoyable, where fair prices are guaranteed, and where every transaction is secure.
           </p>
         </div>
 
@@ -74,47 +74,45 @@ export default function About() {
             <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-200 transition-colors">
               <Globe className="w-8 h-8 text-emerald-600" />
             </div>
-            <h4 className="text-xl font-semibold text-gray-900 mb-2">All-in-One Universe</h4>
-            <p className="text-gray-600">Every real estate need covered in one comprehensive platform</p>
+            <h4 className="text-xl font-semibold text-gray-900 mb-2">Everything in One Place</h4>
+            <p className="text-gray-600">No need to jump between multiple sites - we've got it all</p>
           </div>
           
           <div className="text-center group">
             <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-200 transition-colors">
               <Shield className="w-8 h-8 text-emerald-600" />
             </div>
-            <h4 className="text-xl font-semibold text-gray-900 mb-2">Verified Everything</h4>
-            <p className="text-gray-600">Every listing, every professional, every transaction verified</p>
+            <h4 className="text-xl font-semibold text-gray-900 mb-2">Always Verified</h4>
+            <p className="text-gray-600">No fake listings, no unreliable contractors - everything checked</p>
           </div>
           
           <div className="text-center group">
             <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-200 transition-colors">
               <Users className="w-8 h-8 text-emerald-600" />
             </div>
-            <h4 className="text-xl font-semibold text-gray-900 mb-2">Community Driven</h4>
-            <p className="text-gray-600">Built for Ghanaians, by people who understand local needs</p>
+            <h4 className="text-xl font-semibold text-gray-900 mb-2">Made for Ghana</h4>
+            <p className="text-gray-600">Built by Ghanaians who understand what you really need</p>
           </div>
           
           <div className="text-center group">
             <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-200 transition-colors">
               <Zap className="w-8 h-8 text-emerald-600" />
             </div>
-            <h4 className="text-xl font-semibold text-gray-900 mb-2">Future-Ready</h4>
-            <p className="text-gray-600">Advanced technology meets local expertise for seamless experience</p>
+            <h4 className="text-xl font-semibold text-gray-900 mb-2">Super Simple</h4>
+            <p className="text-gray-600">Easy to use, fast results, no technical headaches</p>
           </div>
         </div>
 
         <div className="mt-20 bg-emerald-50 rounded-3xl p-8 md:p-12">
           <div className="text-center">
             <Target className="w-16 h-16 text-emerald-600 mx-auto mb-6" />
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Why HabiGrid Exists</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">The Problem We Solved</h3>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Ghana's real estate market is fragmented. Finding properties means visiting multiple sites. 
-              Hiring professionals requires endless referrals. Getting fair prices demands extensive research. 
-              Managing transactions involves countless intermediaries.
+              Finding good properties used to mean endless searching. Getting reliable contractors meant 
+              asking around for weeks. And you never knew if you were getting a fair price or being taken advantage of.
             </p>
             <p className="text-xl font-semibold text-emerald-800">
-              HabiGrid eliminates this chaos by bringing everything under one powerful, 
-              transparent, and trustworthy platform.
+              Now there's a better way. Everything you need, all verified, all in one place.
             </p>
           </div>
         </div>
