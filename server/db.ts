@@ -6,13 +6,8 @@ import * as schema from "@shared/schema";
 // Use Replit-provided PostgreSQL database
 const isReplit = !!process.env.REPL_ID;
 
-// In Replit, construct the DATABASE_URL from individual environment variables if needed
-let DATABASE_URL;
-if (isReplit && process.env.PGHOST && process.env.PGUSER && process.env.PGPASSWORD && process.env.PGDATABASE) {
-  DATABASE_URL = `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}/${process.env.PGDATABASE}?sslmode=require`;
-} else {
-  DATABASE_URL = process.env.DATABASE_URL;
-}
+// In Replit, use the provided DATABASE_URL
+let DATABASE_URL = process.env.DATABASE_URL;
 
 if (!DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable is required");
@@ -24,7 +19,7 @@ console.log(`[DB] Connecting to PostgreSQL database`);
 // Configure PostgreSQL connection for Replit database
 const poolConfig = {
   connectionString: DATABASE_URL,
-  ssl: isReplit ? { rejectUnauthorized: false } : false,
+  ssl: isReplit && DATABASE_URL?.includes('replit') ? { rejectUnauthorized: false } : false,
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
