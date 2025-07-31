@@ -32,18 +32,18 @@ export default function Hero() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-              Connect to
-              <span className="text-emerald-300 block">Everything</span>
-              <span className="text-emerald-400">You Need</span>
+              Where Dreams
+              <span className="text-emerald-300 block">Meet</span>
+              <span className="text-emerald-400">Reality</span>
             </h1>
             
             <p className="text-xl text-emerald-100 mb-4 leading-relaxed font-medium">
-              Ghana's smartest connectivity platform for properties and professionals
+              Connecting Ghana to better homes and trusted professionals
             </p>
             
             <p className="text-lg text-emerald-200/90 mb-8 leading-relaxed">
-              Whether you need a place to live, land to buy, or skilled professionals to hire - 
-              we connect you directly to verified options. One platform, endless possibilities, zero hassle.
+              The bridge that connects you to verified properties, trusted professionals, and fair deals. 
+              No more searching everywhere - everything you need is here, waiting for you.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
