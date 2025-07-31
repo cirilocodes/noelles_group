@@ -7,12 +7,12 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig({
-  root: 'client',          // 👈 This tells Vite to build from /client
-  base: '/noelles_group/', // 👈 This matches your GitHub repo name
+export default defineConfig(async () => ({
+  root: path.resolve(__dirname, "client"),
+  base: "/noelles_group/",
   build: {
-    outDir: '../dist',     // 👈 This makes sure the output goes into root/dist
-    emptyOutDir: true
+    outDir: path.resolve(__dirname, "dist"),
+    emptyOutDir: true,
   },
   plugins: [
     react(),
@@ -20,9 +20,7 @@ export default defineConfig({
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
+          (await import("@replit/vite-plugin-cartographer")).cartographer(),
         ]
       : []),
   ],
@@ -33,14 +31,9 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: path.resolve(__dirname, "dist/public"),
-    emptyOutDir: true,
-  },
   server: {
     host: true,
-    port: 5173, 
+    port: 5173,
     allowedHosts: "all",
     strictPort: false,
     fs: {
@@ -48,7 +41,7 @@ export default defineConfig({
       allow: [".."],
     },
     hmr: {
-      clientPort: 443
+      clientPort: 443,
     },
   },
-});
+}));
