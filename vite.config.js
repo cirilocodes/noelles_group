@@ -8,8 +8,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  base: '/noelles_group/', // <-- important!
-  plugins: [react()],
+  root: 'client',          // 👈 This tells Vite to build from /client
+  base: '/noelles_group/', // 👈 This matches your GitHub repo name
+  build: {
+    outDir: '../dist',     // 👈 This makes sure the output goes into root/dist
+    emptyOutDir: true
+  },
   plugins: [
     react(),
     runtimeErrorOverlay(),
