@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(async () => ({
   root: path.resolve(__dirname, "client"),
-  base: "./",
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
