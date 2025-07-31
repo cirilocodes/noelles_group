@@ -56,8 +56,7 @@ export default function Hero() {
               </Button>
               <Button 
                 onClick={() => scrollToSection('about')}
-                variant="outline"
-                className="border-2 border-white/50 px-8 py-4 rounded-full text-white font-bold text-lg hover:bg-white/10 transition-all duration-300"
+                className="border-2 border-white bg-transparent text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 hover:text-white transition-all duration-300"
                 size="lg"
               >
                 Discover More
