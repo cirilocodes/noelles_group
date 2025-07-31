@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development DATABASE_URL=postgresql://postgres:Chris%40ko74@localhost:5432/noelles_group tsx server/index.ts",
     "build:frontend": "vite build", 
+    "preview": "vite preview",
     "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist/server",
     "build": "npm run build:frontend && npm run build:server",
     "start": "NODE_ENV=production node dist/server/index.js",
