@@ -10,71 +10,75 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 relative overflow-hidden flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-emerald-900/40"></div>
+    <section 
+      id="home" 
+      className="min-h-screen bg-gradient-to-br from-primary/90 via-primary/80 to-primary/70 relative overflow-hidden flex items-center"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/50"></div>
       
-      {/* Floating elements for artistic effect */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-emerald-400/30 rounded-full animate-float">
-        <Home className="w-8 h-8 text-white m-6" />
+      {/* Floating icons */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-primary-foreground/20 rounded-full animate-float">
+        <Home className="w-8 h-8 text-background m-6" />
       </div>
-      <div className="absolute bottom-32 right-16 w-16 h-16 bg-emerald-300/40 rounded-full animate-float" style={{animationDelay: '2s'}}>
-        <Building2 className="w-6 h-6 text-white m-5" />
+      <div className="absolute bottom-32 right-16 w-16 h-16 bg-primary-foreground/15 rounded-full animate-float" style={{animationDelay: '2s'}}>
+        <Building2 className="w-6 h-6 text-background m-5" />
       </div>
-      <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-float" style={{animationDelay: '4s'}}>
-        <Shield className="w-5 h-5 text-white m-3.5" />
+      <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-background/10 rounded-full animate-float" style={{animationDelay: '4s'}}>
+        <Shield className="w-5 h-5 text-primary-foreground m-3.5" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-up">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <span className="text-emerald-200 text-sm font-medium">🚀 Coming Soon to Ghana</span>
+            <div className="inline-flex items-center bg-background/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+              <span className="text-primary/80 text-sm font-medium">🚀 Coming Soon to Ghana</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-black text-foreground mb-6 leading-tight">
               Where Dreams
-              <span className="text-emerald-300 block">Meet</span>
-              <span className="text-emerald-400">Reality</span>
+              <span className="text-primary block">Meet</span>
+              <span className="text-muted text-5xl md:text-7xl font-black">Reality</span>
             </h1>
             
-            <p className="text-xl text-emerald-100 mb-4 leading-relaxed font-medium">
+            <p className="text-xl text-muted-foreground mb-4 leading-relaxed font-medium">
               Connecting Ghana to better homes and trusted professionals
             </p>
             
-            <p className="text-lg text-emerald-200/90 mb-8 leading-relaxed">
+            <p className="text-lg text-muted-foreground/90 mb-8 leading-relaxed">
               The bridge that connects you to verified properties, trusted professionals, and fair deals. 
-              No more searching everywhere - everything you need is here, waiting for you.
+              No more searching everywhere — everything you need is here, waiting for you.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={() => scrollToSection('newsletter')}
-                className="bg-white text-emerald-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-background text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/10 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 size="lg"
               >
                 Get Launch Updates
               </Button>
               <Button 
                 onClick={() => scrollToSection('about')}
-                className="border-2 border-white bg-transparent text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 hover:text-white transition-all duration-300"
+                className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/80 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 size="lg"
               >
                 Discover More
               </Button>
             </div>
+
             
-            <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/20">
+            <div className="flex items-center gap-6 mt-8 pt-8 border-t border-background/30">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-emerald-300" />
-                <span className="text-emerald-200 text-sm">100% Verified</span>
+                <Shield className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground text-sm">100% Verified</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-emerald-300" />
-                <span className="text-emerald-200 text-sm">Trusted by Thousands</span>
+                <Users className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground text-sm">Trusted by Thousands</span>
               </div>
               <div className="flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-emerald-300" />
-                <span className="text-emerald-200 text-sm">Secure Transactions</span>
+                <Building2 className="w-5 h-5 text-primary" />
+                <span className="text-muted-foreground text-sm">Secure Transactions</span>
               </div>
             </div>
           </div>
@@ -86,12 +90,11 @@ export default function Hero() {
               className="rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500" 
             />
             
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl rotate-12 animate-pulse opacity-80"></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-primary to-primary-foreground rounded-2xl rotate-12 animate-pulse opacity-80"></div>
             
-            {/* Stats overlay */}
-            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
-              <div className="text-xs text-gray-600 mb-1">Launching Soon</div>
-              <div className="text-lg font-bold text-emerald-800">West Africa</div>
+            <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+              <div className="text-xs text-muted-foreground mb-1">Launching Soon</div>
+              <div className="text-lg font-bold text-primary">West Africa</div>
             </div>
           </div>
         </div>

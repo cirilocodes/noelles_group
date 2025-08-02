@@ -13,7 +13,7 @@
   --card-foreground: hsl(240, 10%, 3.9%);
   --border: hsl(240, 5.9%, 90%);
   --input: hsl(240, 5.9%, 90%);
-  --primary: hsl(217, 84%, 39%);
+  --primary: hsl(220, 84%, 48%);
   --primary-foreground: hsl(0, 0%, 98%);
   --secondary: hsl(240, 4.8%, 95.9%);
   --secondary-foreground: hsl(240, 5.9%, 10%);
@@ -21,14 +21,14 @@
   --accent-foreground: hsl(240, 5.9%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(342, 84%, 39%);
+  --ring: hsl(220, 84%, 48%);
   --radius: 0.5rem;
 
-  /* Custom HabiGrid colors */
-  --emerald-primary: hsl(236, 84%, 39%);
-  --emerald-light: hsl(229, 84%, 55%);
-  --emerald-dark: hsl(259, 90%, 20%);
-  --emerald-accent: hsl(0, 0%, 100%);
+  /* Custom HabiGrid colors - BLUE theme */
+  --blue-primary: hsl(220, 84%, 48%);
+  --blue-light: hsl(210, 90%, 60%);
+  --blue-dark: hsl(230, 80%, 30%);
+  --blue-accent: hsl(0, 0%, 100%);
 }
 
 .dark {
@@ -42,7 +42,7 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 3.7%, 15.9%);
   --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(215, 84%, 39%);
+  --primary: hsl(210, 84%, 52%);
   --primary-foreground: hsl(0, 0%, 98%);
   --secondary: hsl(240, 3.7%, 15.9%);
   --secondary-foreground: hsl(0, 0%, 98%);
@@ -50,7 +50,7 @@
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(209, 84%, 39%);
+  --ring: hsl(210, 84%, 52%);
 }
 
 @layer base {
@@ -65,7 +65,7 @@
 
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, hsl(229, 84%, 39%), hsl(249, 84%, 55%));
+    background: linear-gradient(135deg, hsl(210, 84%, 48%), hsl(220, 84%, 65%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -89,8 +89,8 @@
     animation: float 6s ease-in-out infinite;
   }
 
-  .animate-pulse-violet {
-    animation: pulse-violet 2s ease-in-out infinite alternate;
+  .animate-pulse-blue {
+    animation: pulse-blue 2s ease-in-out infinite alternate;
   }
 
   .animate-slide-up {
@@ -108,12 +108,12 @@
   }
 }
 
-@keyframes pulse-violet {
+@keyframes pulse-blue {
   0% {
-    box-shadow: 0 0 0 0 hsla(179, 84%, 39%, 0.7);
+    box-shadow: 0 0 0 0 hsla(220, 84%, 48%, 0.7);
   }
   100% {
-    box-shadow: 0 0 0 20px hsla(160, 84%, 39%, 0);
+    box-shadow: 0 0 0 20px hsla(220, 84%, 48%, 0);
   }
 }
 
