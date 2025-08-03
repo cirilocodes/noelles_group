@@ -26,15 +26,15 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-const port = parseInt(process.env.PORT || "3000", 10);
+const port = parseInt(process.env.PORT || "5000", 10);
 
 // In development, use ViteExpress to serve both frontend and backend
 if (process.env.NODE_ENV === "development") {
   ViteExpress.listen(app, port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on http://0.0.0.0:${port}`);
   });
 } else {
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
   });
 }
