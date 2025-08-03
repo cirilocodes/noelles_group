@@ -35,15 +35,9 @@ ViteExpress.config({
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
 });
 
-// In development, use ViteExpress to serve both frontend and backend
-if (process.env.NODE_ENV === "development") {
-  ViteExpress.listen(app, port, () => {
-    console.log(`🚀 Server running on http://0.0.0.0:${port}`);
-    console.log(`📱 Frontend served by ViteExpress on the same port`);
-    console.log(`🔧 Admin dashboard: http://0.0.0.0:${port}/admin/login`);
-  });
-} else {
-  app.listen(port, "0.0.0.0", () => {
-    console.log(`Server running on port ${port}`);
-  });
-}
+// Start server with ViteExpress for frontend serving
+ViteExpress.listen(app, port, () => {
+  console.log(`🚀 Server running on http://0.0.0.0:${port}`);
+  console.log(`📱 Frontend served by ViteExpress on the same port`);
+  console.log(`🔧 Admin dashboard: http://0.0.0.0:${port}/admin/login`);
+});
