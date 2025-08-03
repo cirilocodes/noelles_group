@@ -1,42 +1,78 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
-interface EmailOptions {
-  to: string;
-  subject: string;
-  html: string;
-  text: string;
-}
-
-// Configure Hostinger SMTP
+// Create email transporter using Hostinger SMTP
 const transporter = nodemailer.createTransport({
-  host: "smtp.hostinger.com",
-  port: 587,
+  host: process.env.HOSTINGER_SMTP_HOST,
+  port: parseInt(process.env.HOSTINGER_SMTP_PORT || '587'),
   secure: false, // true for 465, false for other ports
   auth: {
-    user: process.env.EMAIL_USER, // Your Hostinger email
-    pass: process.env.EMAIL_PASSWORD, // Your email password
+    user: process.env.HOSTINGER_EMAIL_USER,
+    pass: process.env.HOSTINGER_EMAIL_PASS,
   },
 });
 
-export async function sendEmailNotification(options: EmailOptions): Promise<void> {
-  try {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-      console.warn("Email credentials not configured. Email not sent.");
-      return;
-    }
+export interface EmailOptions {
+  to: string;
+  subject: string;
+  html: string;
+  text?: string;
+}
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+export async function sendEmail(options: EmailOptions): Promise<boolean> {
+  try {
+    await transporter.sendMail({
+      from: process.env.HOSTINGER_EMAIL_USER,
       to: options.to,
       subject: options.subject,
       html: options.html,
       text: options.text,
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully:", info.messageId);
+    });
+    return true;
   } catch (error) {
-    console.error("Failed to send email:", error);
-    // Don't throw error to prevent breaking the main flow
+    console.error('Email sending failed:', error);
+    return false;
   }
 }
+
+// Email templates
+export const emailTemplates = {
+  earlyAccessRequest: (data: { name: string; email: string; company?: string; phone?: string; message?: string }) => ({
+    subject: 'New Early Access Request - HabiGrid',
+    html: `
+      <h2>New Early Access Request</h2>
+      <p><strong>Name:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      ${data.company ? `<p><strong>Company:</strong> ${data.company}</p>` : ''}
+      ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
+      ${data.message ? `<p><strong>Message:</strong> ${data.message}</p>` : ''}
+      <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+    `,
+  }),
+
+  contactForm: (data: { name: string; email: string; company?: string; phone?: string; subject: string; message: string }) => ({
+    subject: `Contact Form: ${data.subject} - HabiGrid`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      ${data.company ? `<p><strong>Company:</strong> ${data.company}</p>` : ''}
+      ${data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : ''}
+      <p><strong>Subject:</strong> ${data.subject}</p>
+      <p><strong>Message:</strong> ${data.message}</p>
+      <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+    `,
+  }),
+
+  adminApprovalRequest: (data: { username: string; email: string; role: string }) => ({
+    subject: 'New Admin User Registration - Approval Required',
+    html: `
+      <h2>New Admin User Registration</h2>
+      <p>A new user has requested admin access:</p>
+      <p><strong>Username:</strong> ${data.username}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Role:</strong> ${data.role}</p>
+      <p><strong>Registered:</strong> ${new Date().toLocaleString()}</p>
+      <p>Please log into the admin dashboard to approve or reject this request.</p>
+    `,
+  }),
+};

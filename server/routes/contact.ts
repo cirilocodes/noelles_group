@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "../db.js";
 import { contactSubmissions, insertContactSchema } from "../../shared/schema.js";
-import { sendEmailNotification } from "../services/email.js";
+import { sendEmail, emailTemplates } from "../services/email.js";
 import { eq } from "drizzle-orm";
 
 const router = Router();
@@ -17,33 +17,18 @@ router.post("/submit", async (req, res) => {
       .returning();
 
     // Send email notification to hello@habigridglobal.com
-    await sendEmailNotification({
+    const emailData = emailTemplates.contactForm({
+      name: submission.name,
+      email: submission.email,
+      company: submission.company,
+      phone: submission.phone,
+      subject: submission.subject,
+      message: submission.message,
+    });
+    await sendEmail({
       to: "hello@habigridglobal.com",
-      subject: `New Contact Form: ${submission.subject} - HabiGrid`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${submission.name}</p>
-        <p><strong>Email:</strong> ${submission.email}</p>
-        ${submission.company ? `<p><strong>Company:</strong> ${submission.company}</p>` : ''}
-        ${submission.phone ? `<p><strong>Phone:</strong> ${submission.phone}</p>` : ''}
-        <p><strong>Subject:</strong> ${submission.subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${submission.message.replace(/\n/g, '<br>')}</p>
-        <p><strong>Submitted:</strong> ${new Date(submission.createdAt).toLocaleString()}</p>
-        
-        <p>You can manage this message in the admin panel.</p>
-      `,
-      text: `
-        New Contact Form Submission
-        
-        Name: ${submission.name}
-        Email: ${submission.email}
-        ${submission.company ? `Company: ${submission.company}` : ''}
-        ${submission.phone ? `Phone: ${submission.phone}` : ''}
-        Subject: ${submission.subject}
-        Message: ${submission.message}
-        Submitted: ${new Date(submission.createdAt).toLocaleString()}
-      `
+      subject: emailData.subject,
+      html: emailData.html,
     });
 
     res.status(201).json({ 

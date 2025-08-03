@@ -57,6 +57,19 @@ router.post("/register", async (req, res) => {
         isApproved: adminUsers.isApproved
       });
 
+    // Send approval request email
+    const { sendEmail, emailTemplates } = await import("../services/email.js");
+    const emailData = emailTemplates.adminApprovalRequest({
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    });
+    await sendEmail({
+      to: 'hello@habigridglobal.com',
+      subject: emailData.subject,
+      html: emailData.html,
+    });
+
     res.status(201).json({ 
       message: "Registration request submitted. Awaiting approval from hello@habigridglobal.com",
       user 
@@ -111,8 +124,13 @@ router.post("/login", async (req, res) => {
       });
     }
 
+    // Generate JWT token
+    const { generateToken } = await import("../middleware/auth.js");
+    const token = generateToken(user);
+
     res.json({ 
       message: "Login successful",
+      token,
       user: { 
         id: user.id, 
         username: user.username, 

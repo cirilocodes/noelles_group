@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "../db.js";
 import { earlyAccessRequests, insertEarlyAccessSchema } from "../../shared/schema.js";
-import { sendEmailNotification } from "../services/email.js";
+import { sendEmail, emailTemplates } from "../services/email.js";
 import { eq } from "drizzle-orm";
 
 const router = Router();
@@ -17,30 +17,17 @@ router.post("/submit", async (req, res) => {
       .returning();
 
     // Send email notification to hello@habigridglobal.com
-    await sendEmailNotification({
+    const emailData = emailTemplates.earlyAccessRequest({
+      name: request.name,
+      email: request.email,
+      company: request.company,
+      phone: request.phone,
+      message: request.message,
+    });
+    await sendEmail({
       to: "hello@habigridglobal.com",
-      subject: "New Early Access Request - HabiGrid",
-      html: `
-        <h2>New Early Access Request</h2>
-        <p><strong>Name:</strong> ${request.name}</p>
-        <p><strong>Email:</strong> ${request.email}</p>
-        ${request.company ? `<p><strong>Company:</strong> ${request.company}</p>` : ''}
-        ${request.phone ? `<p><strong>Phone:</strong> ${request.phone}</p>` : ''}
-        ${request.message ? `<p><strong>Message:</strong> ${request.message}</p>` : ''}
-        <p><strong>Submitted:</strong> ${new Date(request.createdAt).toLocaleString()}</p>
-        
-        <p>You can manage this request in the admin panel.</p>
-      `,
-      text: `
-        New Early Access Request
-        
-        Name: ${request.name}
-        Email: ${request.email}
-        ${request.company ? `Company: ${request.company}` : ''}
-        ${request.phone ? `Phone: ${request.phone}` : ''}
-        ${request.message ? `Message: ${request.message}` : ''}
-        Submitted: ${new Date(request.createdAt).toLocaleString()}
-      `
+      subject: emailData.subject,
+      html: emailData.html,
     });
 
     res.status(201).json({ 
