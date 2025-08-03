@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-export function ContactForm() {
+export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,10 +21,8 @@ export function ContactForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      return apiRequest("/api/contact/submit", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      const response = await apiRequest("/api/contact/submit", "POST", data);
+      return response.json();
     },
     onSuccess: (data) => {
       toast({

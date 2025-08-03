@@ -10,6 +10,8 @@ export const adminUsers = pgTable("admin_users", {
   password: text("password").notNull(),
   role: text("role").notNull().default("admin"), // admin, super_admin
   isApproved: boolean("is_approved").default(false).notNull(),
+  approvedAt: timestamp("approved_at"),
+  lastLoginAt: timestamp("last_login_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

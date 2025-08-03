@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Menu, X, LogIn } from "lucide-react";
+import { Link } from "wouter";
 import HabiGridLogo from "./habigrid-logo";
+import EarlyAccessForm from "./early-access-form";
+import ContactForm from "./contact-form";
 
 const navItems = [
   { id: "home", label: "Home" },
@@ -49,13 +53,43 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* CTA */}
-          <Button
-            onClick={() => scrollToSection("early-access")}
-            className="hidden md:block bg-primary text-background hover:bg-primary/80 transition-all duration-300"
-          >
-            Join Early Access
-          </Button>
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-background">
+                  Early Access
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Join Early Access</DialogTitle>
+                </DialogHeader>
+                <EarlyAccessForm />
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-background">
+                  Contact
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Contact Us</DialogTitle>
+                </DialogHeader>
+                <ContactForm />
+              </DialogContent>
+            </Dialog>
+            
+            <Link href="/admin/login">
+              <Button className="bg-primary text-background hover:bg-primary/80 transition-all duration-300">
+                <LogIn className="w-4 h-4 mr-2" />
+                Admin Login
+              </Button>
+            </Link>
+          </div>
 
           {/* Mobile menu toggle */}
           <Button
@@ -86,12 +120,40 @@ export default function Navigation() {
                   {label}
                 </button>
               ))}
-              <Button
-                onClick={() => scrollToSection("early-access")}
-                className="bg-primary text-background w-full hover:bg-primary/80"
-              >
-                Join Early Access
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-primary text-background w-full hover:bg-primary/80">
+                    Early Access
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Join Early Access</DialogTitle>
+                  </DialogHeader>
+                  <EarlyAccessForm />
+                </DialogContent>
+              </Dialog>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="w-full text-primary border-primary">
+                    Contact
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Contact Us</DialogTitle>
+                  </DialogHeader>
+                  <ContactForm />
+                </DialogContent>
+              </Dialog>
+              
+              <Link href="/admin/login">
+                <Button variant="outline" className="w-full text-primary border-primary">
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Admin Login
+                </Button>
+              </Link>
             </div>
           </div>
         )}

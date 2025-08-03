@@ -75,4 +75,17 @@ export const emailTemplates = {
       <p>Please log into the admin dashboard to approve or reject this request.</p>
     `,
   }),
+
+  adminApprovalNotification: (data: { username: string; email: string }) => ({
+    subject: 'Admin Account Approved - HabiGrid',
+    html: `
+      <h2>Admin Account Approved</h2>
+      <p>Hello ${data.username},</p>
+      <p>Your admin account for HabiGrid has been approved! You can now login to the admin dashboard.</p>
+      <p><strong>Username:</strong> ${data.username}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p>You can access the admin dashboard at: <a href="https://habigrid.com/admin/login">Admin Login</a></p>
+      <p>Welcome to the HabiGrid admin team!</p>
+    `,
+  }),
 };

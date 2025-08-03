@@ -171,6 +171,7 @@ router.patch("/users/:id/approve", async (req: AuthRequest, res) => {
       .update(adminUsers)
       .set({ 
         isApproved: true, 
+        approvedAt: new Date(),
         updatedAt: new Date() 
       })
       .where(eq(adminUsers.id, userId))
@@ -180,8 +181,20 @@ router.patch("/users/:id/approve", async (req: AuthRequest, res) => {
         email: adminUsers.email
       });
 
+    // Send approval notification email
+    const { sendEmail, emailTemplates } = await import("../services/email.js");
+    const emailData = emailTemplates.adminApprovalNotification({
+      username: approvedUser.username,
+      email: approvedUser.email,
+    });
+    await sendEmail({
+      to: approvedUser.email,
+      subject: emailData.subject,
+      html: emailData.html,
+    });
+
     res.json({ 
-      message: "User approved successfully",
+      message: "User approved successfully and notified via email",
       user: approvedUser 
     });
   } catch (error) {

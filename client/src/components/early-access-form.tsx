@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-export function EarlyAccessForm() {
+export default function EarlyAccessForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,10 +20,8 @@ export function EarlyAccessForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      return apiRequest("/api/early-access/submit", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      const response = await apiRequest("/api/early-access/submit", "POST", data);
+      return response.json();
     },
     onSuccess: (data) => {
       toast({
