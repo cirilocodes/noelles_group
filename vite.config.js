@@ -12,15 +12,14 @@ export default defineConfig(async () => ({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    sourcemap: true, // Optional for debugging on Vercel
   },
   plugins: [
     react(),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
-      ? [
-          (await import("@replit/vite-plugin-cartographer")).cartographer(),
-        ]
+      ? [(await import("@replit/vite-plugin-cartographer")).cartographer()]
       : []),
   ],
   resolve: {
