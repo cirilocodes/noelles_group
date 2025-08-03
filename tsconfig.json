@@ -1,19 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
     "outDir": "dist",
+    "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "skipLibCheck": true,
     "resolveJsonModule": true,
-    "declaration": false,
-    "types": ["node"],
-    "lib": ["ES2020", "DOM"]
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["server", "shared"],
-  "exclude": ["node_modules", "dist", "client"]
+  "include": ["server", "shared", "client", "types", "vite.config.ts"]
 }
+
