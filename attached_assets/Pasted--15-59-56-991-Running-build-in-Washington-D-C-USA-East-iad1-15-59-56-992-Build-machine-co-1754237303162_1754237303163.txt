@@ -1,0 +1,239 @@
+[15:59:56.991] Running build in Washington, D.C., USA (East) – iad1
+[15:59:56.992] Build machine configuration: 2 cores, 8 GB
+[15:59:57.005] Cloning github.com/cirilocodes/noelles_group (Branch: main, Commit: 1fd3af2)
+[15:59:57.417] Cloning completed: 412.000ms
+[15:59:58.171] Restored build cache from previous deployment (2QteA2Fnq6TACDr2cUpr44NdubZx)
+[16:00:00.299] Running "vercel build"
+[16:00:00.791] Vercel CLI 44.6.4
+[16:00:01.513] Installing dependencies...
+[16:00:02.952] 
+[16:00:02.952] up to date in 1s
+[16:00:02.952] 
+[16:00:02.953] 83 packages are looking for funding
+[16:00:02.953]   run `npm fund` for details
+[16:00:02.989] Running "npm run build"
+[16:00:03.158] 
+[16:00:03.160] > rest-express@1.0.0 build
+[16:00:03.160] > npm run build:frontend && npm run build:server
+[16:00:03.161] 
+[16:00:03.275] 
+[16:00:03.276] > rest-express@1.0.0 build:frontend
+[16:00:03.276] > vite build
+[16:00:03.276] 
+[16:00:03.618] [36mvite v5.4.19 [32mbuilding for production...[36m[39m
+[16:00:03.981] transforming...
+[16:00:04.055] Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+[16:00:04.056]   npx update-browserslist-db@latest
+[16:00:04.056]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[16:00:08.500] [32m✓[39m 1730 modules transformed.
+[16:00:08.852] rendering chunks...
+[16:00:08.863] computing gzip size...
+[16:00:08.881] [2m../dist/[22m[32mindex.html                 [39m[1m[2m  0.62 kB[22m[1m[22m[2m │ gzip:   0.40 kB[22m
+[16:00:08.882] [2m../dist/[22m[2massets/[22m[35mindex-BAQ1fOj_.css  [39m[1m[2m 72.02 kB[22m[1m[22m[2m │ gzip:  12.37 kB[22m
+[16:00:08.882] [2m../dist/[22m[2massets/[22m[36mindex-DinEIdJj.js   [39m[1m[2m457.28 kB[22m[1m[22m[2m │ gzip: 138.30 kB[22m
+[16:00:08.882] [32m✓ built in 4.93s[39m
+[16:00:09.026] 
+[16:00:09.026] > rest-express@1.0.0 build:server
+[16:00:09.026] > tsc server/index.ts --outDir dist --module commonjs
+[16:00:09.027] 
+[16:00:23.066] node_modules/drizzle-orm/gel-core/columns/date-duration.d.ts(1,35): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.067] node_modules/drizzle-orm/gel-core/columns/duration.d.ts(1,31): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.067] node_modules/drizzle-orm/gel-core/columns/localdate.d.ts(1,32): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.067] node_modules/drizzle-orm/gel-core/columns/localtime.d.ts(1,32): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.067] node_modules/drizzle-orm/gel-core/columns/relative-duration.d.ts(1,39): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.068] node_modules/drizzle-orm/gel-core/columns/timestamp.d.ts(1,36): error TS2307: Cannot find module 'gel' or its corresponding type declarations.
+[16:00:23.068] node_modules/drizzle-orm/gel-core/query-builders/query.d.ts(23,22): error TS2420: Class 'GelRelationalQuery<TResult>' incorrectly implements interface 'SQLWrapper'.
+[16:00:23.068]   Property 'getSQL' is missing in type 'GelRelationalQuery<TResult>' but required in type 'SQLWrapper'.
+[16:00:23.068] node_modules/drizzle-orm/gel-core/roles.d.ts(7,22): error TS2559: Type 'GelRole' has no properties in common with type 'GelRoleConfig'.
+[16:00:23.068] node_modules/drizzle-orm/mysql-core/db.d.ts(1,38): error TS2307: Cannot find module 'mysql2/promise' or its corresponding type declarations.
+[16:00:23.069] node_modules/drizzle-orm/mysql-core/query-builders/delete.d.ts(36,22): error TS2420: Class 'MySqlDeleteBase<TTable, TQueryResult, TPreparedQueryHKT, TDynamic, TExcludedMethods>' incorrectly implements interface 'SQLWrapper'.
+[16:00:23.069]   Property 'getSQL' is missing in type 'MySqlDeleteBase<TTable, TQueryResult, TPreparedQueryHKT, TDynamic, TExcludedMethods>' but required in type 'SQLWrapper'.
+[16:00:23.070] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(294,244): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.070]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.071]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.071]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.071] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(320,247): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.071]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.071]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.071]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.072] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(346,248): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.074]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.074]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.074]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.074] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(387,251): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.074]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.075]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.075]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.075] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(413,245): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.075]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.075]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.075]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.075] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(454,248): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.075]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.075]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.075]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | "$dynamic" | "having" | ... 8 more ... | "$withCache"'.
+[16:00:23.076] node_modules/drizzle-orm/mysql-core/query-builders/select.d.ts(611,22): error TS2515: Non-abstract class 'MySqlSelectBase<TTableName, TSelection, TSelectMode, TPreparedQueryHKT, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>' does not implement inherited abstract member getSQL from class 'MySqlSelectQueryBuilderBase<MySqlSelectHKT, TTableName, TSelection, TSelectMode, TPreparedQueryHKT, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>'.
+[16:00:23.076] node_modules/drizzle-orm/mysql-core/query-builders/select.types.d.ts(138,1149): error TS2344: Type 'MySqlSetOperatorExcludedMethods' does not satisfy the constraint '"offset" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | ... 14 more ... | "iterator"'.
+[16:00:23.076]   Type '"session"' is not assignable to type '"offset" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | "innerJoin" | "toSQL" | ... 14 more ... | "iterator"'.
+[16:00:23.076] node_modules/drizzle-orm/pg-core/query-builders/query.d.ts(23,22): error TS2420: Class 'PgRelationalQuery<TResult>' incorrectly implements interface 'SQLWrapper'.
+[16:00:23.077]   Property 'getSQL' is missing in type 'PgRelationalQuery<TResult>' but required in type 'SQLWrapper'.
+[16:00:23.077] node_modules/drizzle-orm/pg-core/roles.d.ts(7,22): error TS2559: Type 'PgRole' has no properties in common with type 'PgRoleConfig'.
+[16:00:23.077] node_modules/drizzle-orm/singlestore-core/columns/bigint.d.ts(13,22): error TS2515: Non-abstract class 'SingleStoreBigInt53Builder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, { unsigned: boolean; }, ColumnBuilderExtraConfig>'.
+[16:00:23.077] node_modules/drizzle-orm/singlestore-core/columns/bigint.d.ts(35,22): error TS2515: Non-abstract class 'SingleStoreBigInt64Builder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, { unsigned: boolean; }, ColumnBuilderExtraConfig>'.
+[16:00:23.077] node_modules/drizzle-orm/singlestore-core/columns/binary.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreBinaryBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreBinaryConfig, object, ColumnBuilderExtraConfig>'.
+[16:00:23.077] node_modules/drizzle-orm/singlestore-core/columns/boolean.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreBooleanBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.086] node_modules/drizzle-orm/singlestore-core/columns/char.d.ts(16,22): error TS2515: Non-abstract class 'SingleStoreCharBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreCharConfig<T["enumValues"], T["length"]>, { length: T["length"]; }, ColumnBuilderExtraConfig>'.
+[16:00:23.086] node_modules/drizzle-orm/singlestore-core/columns/custom.d.ts(24,22): error TS2515: Non-abstract class 'SingleStoreCustomColumnBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, { fieldConfig: Record<string, any>; customTypeParams: CustomTypeParams<any>; }, { singlestoreColumnBuilderBrand: "SingleStoreCustomColumnBuilderBrand"; }, ColumnBuilderExtraConfig>'.
+[16:00:23.086] node_modules/drizzle-orm/singlestore-core/columns/date.d.ts(16,22): error TS2515: Non-abstract class 'SingleStoreDateBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.086] node_modules/drizzle-orm/singlestore-core/columns/date.d.ts(37,22): error TS2515: Non-abstract class 'SingleStoreDateStringBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.086] node_modules/drizzle-orm/singlestore-core/columns/datetime.d.ts(16,22): error TS2515: Non-abstract class 'SingleStoreDateTimeBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreDatetimeConfig<"string" | "date">, object, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/datetime.d.ts(38,22): error TS2515: Non-abstract class 'SingleStoreDateTimeStringBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreDatetimeConfig<"string" | "date">, object, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/decimal.d.ts(15,22): error TS2515: Non-abstract class 'SingleStoreDecimalBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreDecimalConfig<"string" | "number" | "bigint">, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/decimal.d.ts(36,22): error TS2515: Non-abstract class 'SingleStoreDecimalNumberBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreDecimalConfig<"string" | "number" | "bigint">, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/decimal.d.ts(58,22): error TS2515: Non-abstract class 'SingleStoreDecimalBigIntBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreDecimalConfig<"string" | "number" | "bigint">, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/double.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreDoubleBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreDoubleConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.087] node_modules/drizzle-orm/singlestore-core/columns/enum.d.ts(19,5): error TS2416: Property 'generatedAlwaysAs' in type 'SingleStoreEnumColumnBuilder<T>' is not assignable to the same property in base type 'SingleStoreColumnBuilder<T, { enumValues: T["enumValues"]; }, object, ColumnBuilderExtraConfig>'.
+[16:00:23.087]   Type '(as: SQL<unknown> | (() => SQL<unknown>) | T["data"], config?: Partial<GeneratedColumnConfig<unknown>>) => HasGenerated<this, {}>' is not assignable to type '(as: SQL<unknown> | (() => SQL<unknown>) | T["data"], config?: Partial<GeneratedColumnConfig<unknown>>) => HasGenerated<this, { type: "always"; }>'.
+[16:00:23.088]     Type 'HasGenerated<this, {}>' is not assignable to type 'HasGenerated<this, { type: "always"; }>'.
+[16:00:23.088]       Type 'HasGenerated<this, {}>' is not assignable to type '{ _: { hasDefault: true; generated: { type: "always"; }; }; }'.
+[16:00:23.088]         The types of '_.generated' are incompatible between these types.
+[16:00:23.088]           Property 'type' is missing in type '{}' but required in type '{ type: "always"; }'.
+[16:00:23.088] node_modules/drizzle-orm/singlestore-core/columns/float.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreFloatBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreFloatConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.088] node_modules/drizzle-orm/singlestore-core/columns/int.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreIntBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreIntConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.088] node_modules/drizzle-orm/singlestore-core/columns/json.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreJsonBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.089] node_modules/drizzle-orm/singlestore-core/columns/mediumint.d.ts(15,22): error TS2515: Non-abstract class 'SingleStoreMediumIntBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreIntConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.089] node_modules/drizzle-orm/singlestore-core/columns/real.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreRealBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreRealConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.089] node_modules/drizzle-orm/singlestore-core/columns/serial.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreSerialBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, object, ColumnBuilderExtraConfig>'.
+[16:00:23.089] node_modules/drizzle-orm/singlestore-core/columns/smallint.d.ts(15,22): error TS2515: Non-abstract class 'SingleStoreSmallIntBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreIntConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.089] node_modules/drizzle-orm/singlestore-core/columns/text.d.ts(16,22): error TS2515: Non-abstract class 'SingleStoreTextBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, { textType: SingleStoreTextColumnType; enumValues: T["enumValues"]; }, object, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/time.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreTimeBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/timestamp.d.ts(15,22): error TS2515: Non-abstract class 'SingleStoreTimestampBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreDateColumnBaseBuilder<T, SingleStoreTimestampConfig<"string" | "date">, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/timestamp.d.ts(35,22): error TS2515: Non-abstract class 'SingleStoreTimestampStringBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreDateColumnBaseBuilder<T, SingleStoreTimestampConfig<"string" | "date">, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/tinyint.d.ts(15,22): error TS2515: Non-abstract class 'SingleStoreTinyIntBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilderWithAutoIncrement<T, SingleStoreIntConfig, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/varbinary.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreVarBinaryBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreVarbinaryOptions, object, ColumnBuilderExtraConfig>'.
+[16:00:23.090] node_modules/drizzle-orm/singlestore-core/columns/varchar.d.ts(16,22): error TS2515: Non-abstract class 'SingleStoreVarCharBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreVarCharConfig<T["enumValues"], T["length"]>, { length: T["length"]; }, ColumnBuilderExtraConfig>'.
+[16:00:23.091] node_modules/drizzle-orm/singlestore-core/columns/vector.d.ts(13,22): error TS2515: Non-abstract class 'SingleStoreVectorBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, SingleStoreVectorConfig, object, ColumnBuilderExtraConfig>'.
+[16:00:23.091] node_modules/drizzle-orm/singlestore-core/columns/year.d.ts(14,22): error TS2515: Non-abstract class 'SingleStoreYearBuilder<T>' does not implement inherited abstract member generatedAlwaysAs from class 'SingleStoreColumnBuilder<T, object, object, ColumnBuilderExtraConfig>'.
+[16:00:23.091] node_modules/drizzle-orm/singlestore-core/db.d.ts(1,38): error TS2307: Cannot find module 'mysql2/promise' or its corresponding type declarations.
+[16:00:23.091] node_modules/drizzle-orm/singlestore-core/query-builders/delete.d.ts(36,22): error TS2420: Class 'SingleStoreDeleteBase<TTable, TQueryResult, TPreparedQueryHKT, TDynamic, TExcludedMethods>' incorrectly implements interface 'SQLWrapper'.
+[16:00:23.091]   Property 'getSQL' is missing in type 'SingleStoreDeleteBase<TTable, TQueryResult, TPreparedQueryHKT, TDynamic, TExcludedMethods>' but required in type 'SQLWrapper'.
+[16:00:23.092] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(268,262): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.092]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.092]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.092]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | ... 7 more ... | "minus"'.
+[16:00:23.092] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(294,265): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.092]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.092]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.092]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | ... 7 more ... | "minus"'.
+[16:00:23.092] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(320,266): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.092]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.092]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.092]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | ... 7 more ... | "minus"'.
+[16:00:23.092] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(346,263): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.092]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.092]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.092]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | ... 7 more ... | "minus"'.
+[16:00:23.093] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(370,262): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.093]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.094]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.094]       Type '"session"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | ... 7 more ... | "minus"'.
+[16:00:23.094] node_modules/drizzle-orm/singlestore-core/query-builders/select.d.ts(520,22): error TS2515: Non-abstract class 'SingleStoreSelectBase<TTableName, TSelection, TSelectMode, TPreparedQueryHKT, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>' does not implement inherited abstract member getSQL from class 'SingleStoreSelectQueryBuilderBase<SingleStoreSelectHKT, TTableName, TSelection, TSelectMode, TPreparedQueryHKT, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>'.
+[16:00:23.094] node_modules/drizzle-orm/singlestore-core/query-builders/select.types.d.ts(130,1185): error TS2344: Type 'SingleStoreSetOperatorExcludedMethods' does not satisfy the constraint '"offset" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | ... 14 more ... | "minus"'.
+[16:00:23.094]   Type '"session"' is not assignable to type '"offset" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "for" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | ... 14 more ... | "minus"'.
+[16:00:23.094] node_modules/drizzle-orm/singlestore/driver.d.ts(1,100): error TS2307: Cannot find module 'mysql2' or its corresponding type declarations.
+[16:00:23.094] node_modules/drizzle-orm/singlestore/driver.d.ts(2,39): error TS2307: Cannot find module 'mysql2/promise' or its corresponding type declarations.
+[16:00:23.094] node_modules/drizzle-orm/singlestore/session.d.ts(1,94): error TS2307: Cannot find module 'mysql2/promise' or its corresponding type declarations.
+[16:00:23.094] node_modules/drizzle-orm/sqlite-core/query-builders/query.d.ts(25,22): error TS2420: Class 'SQLiteRelationalQuery<TType, TResult>' incorrectly implements interface 'SQLWrapper'.
+[16:00:23.094]   Property 'getSQL' is missing in type 'SQLiteRelationalQuery<TType, TResult>' but required in type 'SQLWrapper'.
+[16:00:23.094] node_modules/drizzle-orm/sqlite-core/query-builders/select.d.ts(233,247): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.094]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.094]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.094]       Type '"config"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | "having" | "groupBy" | "crossJoin" | "unionAll"'.
+[16:00:23.094] node_modules/drizzle-orm/sqlite-core/query-builders/select.d.ts(259,250): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.094]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.094]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.094]       Type '"config"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | "having" | "groupBy" | "crossJoin" | "unionAll"'.
+[16:00:23.094] node_modules/drizzle-orm/sqlite-core/query-builders/select.d.ts(285,251): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.095]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.095]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.095]       Type '"config"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | "having" | "groupBy" | "crossJoin" | "unionAll"'.
+[16:00:23.095] node_modules/drizzle-orm/sqlite-core/query-builders/select.d.ts(311,248): error TS2344: Type 'string' does not satisfy the constraint 'keyof this & string'.
+[16:00:23.095]   Type 'string' is not assignable to type 'keyof this & string'.
+[16:00:23.095]     Type 'string' is not assignable to type 'keyof this'.
+[16:00:23.095]       Type '"config"' is not assignable to type '"offset" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "leftJoin" | "rightJoin" | "innerJoin" | "fullJoin" | "toSQL" | "$dynamic" | "having" | "groupBy" | "crossJoin" | "unionAll"'.
+[16:00:23.095] node_modules/drizzle-orm/sqlite-core/query-builders/select.d.ts(452,22): error TS2515: Non-abstract class 'SQLiteSelectBase<TTableName, TResultType, TRunResult, TSelection, TSelectMode, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>' does not implement inherited abstract member getSQL from class 'SQLiteSelectQueryBuilderBase<SQLiteSelectHKT, TTableName, TResultType, TRunResult, TSelection, TSelectMode, TNullabilityMap, TDynamic, TExcludedMethods, TResult, TSelectedFields>'.
+[16:00:23.095] node_modules/drizzle-orm/sqlite-core/query-builders/select.types.d.ts(123,1157): error TS2344: Type 'SQLiteSetOperatorExcludedMethods' does not satisfy the constraint '"values" | "all" | "offset" | "get" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | ... 12 more ... | "run"'.
+[16:00:23.095]   Type '"config"' is not assignable to type '"values" | "all" | "offset" | "get" | "prepare" | "_" | "getSQL" | "as" | "union" | "intersect" | "except" | "where" | "orderBy" | "limit" | "execute" | "leftJoin" | "rightJoin" | ... 12 more ... | "run"'.
+[16:00:23.095] node_modules/vite-express/dist/main.d.ts(1,8): error TS1259: Module '"/vercel/path0/node_modules/@types/express/index"' can only be default-imported using the 'esModuleInterop' flag
+[16:00:23.095] node_modules/vite-express/dist/main.d.ts(2,8): error TS1192: Module '"/vercel/path0/node_modules/@types/express-serve-static-core/index"' has no default export.
+[16:00:23.095] node_modules/vite-express/dist/main.d.ts(4,8): error TS1192: Module '"http"' has no default export.
+[16:00:23.095] node_modules/vite-express/dist/main.d.ts(5,8): error TS1192: Module '"https"' has no default export.
+[16:00:23.095] node_modules/vite/dist/node/index.d.ts(5,41): error TS2307: Cannot find module 'rollup/parseAst' or its corresponding type declarations.
+[16:00:23.095]   There are types at '/vercel/path0/node_modules/rollup/dist/parseAst.d.ts', but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext', or 'bundler'.
+[16:00:23.095] node_modules/zod/lib/types.d.ts(772,5): error TS18028: Private identifiers are only available when targeting ECMAScript 2015 and higher.
+[16:00:23.095] node_modules/zod/lib/types.d.ts(791,5): error TS18028: Private identifiers are only available when targeting ECMAScript 2015 and higher.
+[16:00:23.095] server/db.ts(2,8): error TS1259: Module '"/vercel/path0/node_modules/postgres/types/index"' can only be default-imported using the 'esModuleInterop' flag
+[16:00:23.101] server/index.ts(1,8): error TS1259: Module '"/vercel/path0/node_modules/@types/express/index"' can only be default-imported using the 'esModuleInterop' flag
+[16:00:23.101] server/index.ts(2,8): error TS1259: Module '"/vercel/path0/node_modules/@types/cors/index"' can only be default-imported using the 'esModuleInterop' flag
+[16:00:23.101] server/index.ts(10,8): error TS1259: Module '"/vercel/path0/node_modules/vite-express/dist/main"' can only be default-imported using the 'esModuleInterop' flag
+[16:00:23.101] server/middleware/auth.ts(2,8): error TS1192: Module '"/vercel/path0/node_modules/@types/jsonwebtoken/index"' has no default export.
+[16:00:23.101] server/routes/admin.ts(81,8): error TS2769: No overload matches this call.
+[16:00:23.101]   Overload 1 of 2, '(value: { content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placeholder<...>; isPublished?: boolean | ... 1 more ... | Placeholder<...>; }): PgInsertBase<...>', gave the following error.
+[16:00:23.101]     Argument of type '{ authorId: number; }' is not assignable to parameter of type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...'.
+[16:00:23.101]       Type '{ authorId: number; }' is missing the following properties from type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...': content, title
+[16:00:23.101]   Overload 2 of 2, '(values: { content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placeholder<...>; isPublished?: boolean | ... 1 more ... | Placeholder<...>; }[]): PgInsertBase<...>', gave the following error.
+[16:00:23.101]     Object literal may only specify known properties, and 'authorId' does not exist in type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...'.
+[16:00:23.101] server/routes/auth.ts(5,8): error TS1192: Module '"/vercel/path0/node_modules/@types/bcrypt/index"' has no default export.
+[16:00:23.101] server/routes/auth.ts(18,52): error TS2339: Property 'username' does not exist on type '{}'.
+[16:00:23.101] server/routes/auth.ts(30,49): error TS2339: Property 'email' does not exist on type '{}'.
+[16:00:23.101] server/routes/auth.ts(41,60): error TS2339: Property 'password' does not exist on type '{}'.
+[16:00:23.101] server/routes/auth.ts(46,33): error TS2339: Property 'username' does not exist on type '{}'.
+[16:00:23.101] server/routes/auth.ts(47,30): error TS2339: Property 'email' does not exist on type '{}'.
+[16:00:23.101] server/routes/auth.ts(49,29): error TS2339: Property 'role' does not exist on type '{}'.
+[16:00:23.101] server/routes/contact.ts(16,15): error TS2769: No overload matches this call.
+[16:00:23.102]   Overload 1 of 2, '(value: { name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<...>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }): PgInsertBase<...>', gave the following error.
+[16:00:23.102]     Argument of type '{}' is not assignable to parameter of type '{ name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }'.
+[16:00:23.102]       Type '{}' is missing the following properties from type '{ name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }': name, message, email, subject
+[16:00:23.102]   Overload 2 of 2, '(values: { name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<...>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]): PgInsertBase<...>', gave the following error.
+[16:00:23.102]     Argument of type '{}' is not assignable to parameter of type '{ name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]'.
+[16:00:23.102]       Type '{}' is missing the following properties from type '{ name: string | SQL<unknown> | Placeholder<string, any>; message: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; ... 5 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]': length, pop, push, concat, and 29 more.
+[16:00:23.102] server/routes/early-access.ts(16,15): error TS2769: No overload matches this call.
+[16:00:23.102]   Overload 1 of 2, '(value: { name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<...>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }): PgInsertBase<...>', gave the following error.
+[16:00:23.102]     Argument of type '{}' is not assignable to parameter of type '{ name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<string, any>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }'.
+[16:00:23.102]       Type '{}' is missing the following properties from type '{ name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<string, any>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }': name, email
+[16:00:23.103]   Overload 2 of 2, '(values: { name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<...>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]): PgInsertBase<...>', gave the following error.
+[16:00:23.103]     Argument of type '{}' is not assignable to parameter of type '{ name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<string, any>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]'.
+[16:00:23.103]       Type '{}' is missing the following properties from type '{ name: string | SQL<unknown> | Placeholder<string, any>; email: string | SQL<unknown> | Placeholder<string, any>; message?: string | SQL<unknown> | Placeholder<string, any>; ... 4 more ...; phone?: string | ... 1 more ... | Placeholder<...>; }[]': length, pop, push, concat, and 29 more.
+[16:00:23.103] server/routes/launch-updates.ts(21,8): error TS2769: No overload matches this call.
+[16:00:23.103]   Overload 1 of 2, '(value: { content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placeholder<...>; isPublished?: boolean | ... 1 more ... | Placeholder<...>; }): PgInsertBase<...>', gave the following error.
+[16:00:23.103]     Argument of type '{ authorId: number; isPublished: any; }' is not assignable to parameter of type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...'.
+[16:00:23.103]       Type '{ authorId: number; isPublished: any; }' is missing the following properties from type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...': content, title
+[16:00:23.103]   Overload 2 of 2, '(values: { content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placeholder<...>; isPublished?: boolean | ... 1 more ... | Placeholder<...>; }[]): PgInsertBase<...>', gave the following error.
+[16:00:23.103]     Object literal may only specify known properties, and 'authorId' does not exist in type '{ content: string | SQL<unknown> | Placeholder<string, any>; title: string | SQL<unknown> | Placeholder<string, any>; authorId: number | SQL<unknown> | Placeholder<...>; id?: number | ... 1 more ... | Placeholder<...>; createdAt?: Date | ... 1 more ... | Placeholder<...>; updatedAt?: Date | ... 1 more ... | Placehol...'.
+[16:00:23.103] server/routes/newsletter.ts(17,60): error TS2339: Property 'email' does not exist on type '{}'.
+[16:00:23.103] server/routes/newsletter.ts(28,15): error TS2769: No overload matches this call.
+[16:00:23.103]   Overload 1 of 2, '(value: { email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }): PgInsertBase<...>', gave the following error.
+[16:00:23.103]     Argument of type '{}' is not assignable to parameter of type '{ email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }'.
+[16:00:23.103]       Property 'email' is missing in type '{}' but required in type '{ email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }'.
+[16:00:23.104]   Overload 2 of 2, '(values: { email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }[]): PgInsertBase<...>', gave the following error.
+[16:00:23.104]     Argument of type '{}' is not assignable to parameter of type '{ email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }[]'.
+[16:00:23.104]       Type '{}' is missing the following properties from type '{ email: string | SQL<unknown> | Placeholder<string, any>; id?: number | SQL<unknown> | Placeholder<string, any>; createdAt?: Date | SQL<unknown> | Placeholder<...>; }[]': length, pop, push, concat, and 29 more.
+[16:00:23.104] server/services/email.ts(1,8): error TS1192: Module '"/vercel/path0/node_modules/@types/nodemailer/index"' has no default export.
+[16:00:23.104] shared/schema.ts(62,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(63,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(64,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(65,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(69,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(70,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(71,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.104] shared/schema.ts(72,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(76,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(77,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(78,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(82,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(83,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(84,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(88,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.105] shared/schema.ts(89,3): error TS2322: Type 'boolean' is not assignable to type 'never'.
+[16:00:23.151] Error: Command "npm run build" exited with 2
+[16:00:26.659] Exiting build container
