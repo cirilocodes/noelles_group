@@ -3,6 +3,9 @@ import cors from "cors";
 import { db } from "./db.js";
 import { newsletterRoutes } from "./routes/newsletter.js";
 import { authRoutes } from "./routes/auth.js";
+import { earlyAccessRoutes } from "./routes/early-access.js";
+import { contactRoutes } from "./routes/contact.js";
+import { launchUpdatesRoutes } from "./routes/launch-updates.js";
 import ViteExpress from "vite-express";
 
 const app = express();
@@ -14,6 +17,9 @@ app.use(express.json());
 // Routes
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/early-access", earlyAccessRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/launch-updates", launchUpdatesRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

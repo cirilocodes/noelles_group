@@ -1,21 +1,21 @@
 import { Router } from "express";
 import { db } from "../db.js";
-import { users, insertUserSchema } from "../../shared/schema.js";
+import { adminUsers, insertAdminUserSchema } from "../../shared/schema.js";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 const router = Router();
 
-// Register user
+// Register admin user
 router.post("/register", async (req, res) => {
   try {
-    const validatedData = insertUserSchema.parse(req.body);
+    const validatedData = insertAdminUserSchema.parse(req.body);
     
-    // Check if username already exists
+    // Check if username or email already exists
     const existing = await db
       .select()
-      .from(users)
-      .where(eq(users.username, validatedData.username))
+      .from(adminUsers)
+      .where(eq(adminUsers.username, validatedData.username))
       .limit(1);
 
     if (existing.length > 0) {
@@ -24,20 +24,41 @@ router.post("/register", async (req, res) => {
       });
     }
 
+    const existingEmail = await db
+      .select()
+      .from(adminUsers)
+      .where(eq(adminUsers.email, validatedData.email))
+      .limit(1);
+
+    if (existingEmail.length > 0) {
+      return res.status(409).json({ 
+        error: "Email already exists" 
+      });
+    }
+
     // Hash password
     const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(validatedData.password, saltRounds);
 
     const [user] = await db
-      .insert(users)
+      .insert(adminUsers)
       .values({
         username: validatedData.username,
-        password: hashedPassword
+        email: validatedData.email,
+        password: hashedPassword,
+        role: validatedData.role || "admin",
+        isApproved: false // Requires approval
       })
-      .returning({ id: users.id, username: users.username });
+      .returning({ 
+        id: adminUsers.id, 
+        username: adminUsers.username, 
+        email: adminUsers.email,
+        role: adminUsers.role,
+        isApproved: adminUsers.isApproved
+      });
 
     res.status(201).json({ 
-      message: "User registered successfully",
+      message: "Registration request submitted. Awaiting approval from hello@habigridglobal.com",
       user 
     });
   } catch (error) {
@@ -54,7 +75,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login user
+// Login admin user
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -67,13 +88,19 @@ router.post("/login", async (req, res) => {
 
     const [user] = await db
       .select()
-      .from(users)
-      .where(eq(users.username, username))
+      .from(adminUsers)
+      .where(eq(adminUsers.username, username))
       .limit(1);
 
     if (!user) {
       return res.status(401).json({ 
         error: "Invalid credentials" 
+      });
+    }
+
+    if (!user.isApproved) {
+      return res.status(401).json({ 
+        error: "Account pending approval from hello@habigridglobal.com" 
       });
     }
 
@@ -86,13 +113,64 @@ router.post("/login", async (req, res) => {
 
     res.json({ 
       message: "Login successful",
-      user: { id: user.id, username: user.username }
+      user: { 
+        id: user.id, 
+        username: user.username, 
+        email: user.email,
+        role: user.role 
+      }
     });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ 
       error: "Failed to login" 
     });
+  }
+});
+
+// Get pending users (for approval)
+router.get("/pending-users", async (req, res) => {
+  try {
+    const pendingUsers = await db
+      .select({
+        id: adminUsers.id,
+        username: adminUsers.username,
+        email: adminUsers.email,
+        role: adminUsers.role,
+        createdAt: adminUsers.createdAt
+      })
+      .from(adminUsers)
+      .where(eq(adminUsers.isApproved, false));
+
+    res.json({ pendingUsers });
+  } catch (error) {
+    console.error("Error fetching pending users:", error);
+    res.status(500).json({ error: "Failed to fetch pending users" });
+  }
+});
+
+// Approve user
+router.post("/approve-user/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    
+    const [approvedUser] = await db
+      .update(adminUsers)
+      .set({ isApproved: true, updatedAt: new Date() })
+      .where(eq(adminUsers.id, userId))
+      .returning({
+        id: adminUsers.id,
+        username: adminUsers.username,
+        email: adminUsers.email
+      });
+
+    res.json({ 
+      message: "User approved successfully",
+      user: approvedUser 
+    });
+  } catch (error) {
+    console.error("Error approving user:", error);
+    res.status(500).json({ error: "Failed to approve user" });
   }
 });
 
