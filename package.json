@@ -4,15 +4,12 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DATABASE_URL=postgresql://postgres:Chris%40ko74@localhost:5432/noelles_group tsx server/index.ts",
+    "dev": "tsx server/index.ts",
+    "build": "npm run build:frontend && npm run build:server",
     "build:frontend": "vite build",
-    "preview": "vite preview",
-    "build": "npm run build:frontend",
-    "start": "NODE_ENV=production node dist/server/index.js",
-    "check": "tsc",
-    "db:push": "drizzle-kit push",
-    "predeploy": "npm run build:frontend",
-    "deploy": "gh-pages -d dist"
+    "build:server": "tsc server/index.ts --outDir dist --module commonjs",
+    "start": "node dist/server/index.js",
+    "db:push": "drizzle-kit push"
   },
   "homepage": "https://cirilocodes.github.io/noelles_group",
   "dependencies": {
@@ -63,7 +60,6 @@
     "connect-pg-simple": "^10.0.0",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
-    "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.4",
     "drizzle-zod": "^0.7.0",
     "embla-carousel-react": "^8.6.0",
@@ -115,6 +111,7 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.31.4",
     "gh-pages": "^6.3.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.17",
